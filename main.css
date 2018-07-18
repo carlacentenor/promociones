@@ -1,0 +1,213 @@
+@font-face {
+    font-family: "papafont";
+    src: url('https://cdn.glitch.com/91e28cb2-d37c-4e4b-92be-c94d260d314c%2FKnockout-HTF69-FullLiteweight.otf?1531868956222') format("truetype");
+  }
+  
+  
+  :root {
+    --red: #F20030;
+    --darkred: #BB141A;
+    --green: #009774;
+    --darkgrey: #807673;
+    --lightgrey: #A39D9B;
+    --freshgrey: #6B514B;
+  }
+  
+  .title-section {
+    background-color: var(--darkred);
+    color: white;
+    font-size: 30px;
+    font-family: "papafont";
+    text-transform: uppercase
+  }
+  
+  .f14 {
+    font-size: 12px;
+  }
+  
+  .subtitle {
+    color: var(--red);
+    text-transform: uppercase;
+    font-size: 24px;
+  }
+  
+  .btn-general {
+    text-align: center;
+    background-color: var(--darkgrey);
+    color: white;
+    border: none;
+    font-size: 18px;
+    height: 40px;
+    width: 35px;
+    border-radius: 8px;
+  }
+  
+  .img-icon {
+    height: 40px;
+    width: 40px;
+  }
+  
+  .num-total-delivery {
+    font-size: 20px;
+    color: var(--green);
+    font-weight: 600;
+    text-align: right
+  }
+  
+  .btn-subt {
+    text-align: center;
+    background-color: var(--lightgrey);
+    color: white;
+    border: none;
+    height: 40px;
+    width: 35px;
+    font-size: 18px;
+    outline: none;
+    border-radius: 8px
+  }
+  
+  .border-bot {
+    border-bottom: 1px solid var(--lightgrey);
+    height: 10px;
+    width: 100%;
+  }
+  
+  .btn-confirm {
+    background-color: var(--lightgrey);
+    color: white;
+    font-size: 20px;
+    width: 100%;
+    border: none;
+  }
+  
+  .number-span {
+    color: var(--green);
+    font-size: 24px;
+  }
+  
+  .back {
+    color: var(--green) !important;
+    font-weight: 600
+  }
+  
+  .delivery {
+    color: var(--green);
+    font-weight: 500;
+  }
+  
+  .btn-confirm-pizza {
+    background-color: var(--green);
+    width: 100%;
+    color: white;
+    text-transform: uppercase;
+    font-size: 20px;
+  }
+  
+  .btn-active {
+    background-color: var(--green);
+  }
+  
+  .container-bigpizza,.container-bigfamily {
+    color: #898989;
+  }
+  
+  .name-product {
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--darkgrey);
+    font-family: "papafont";
+    text-transform: uppercase
+  }
+  
+  .subtitle-product{
+    color: var(--darkgrey);
+    font-size: 13px;
+    position: relative;
+    top: -8px;
+  }
+  
+  textarea {
+    width: 100%;
+    height: auto;
+    border: none;
+    outline: none;
+  }
+  
+  .detail-css {
+    margin: 1em;
+    padding: 1em;
+  }
+  
+  .detail-css h5{
+    color: var(--darkred);
+    text-transform: uppercase
+  }
+  
+  .line {
+    height: 3px;
+    background-color: var(--darkred);
+    margin-bottom: 10px
+  }
+  
+  .line-b{
+    border-bottom: 1px solid var(--darkgrey)
+    
+  }
+  
+  .adicion-icon {
+    width: 35px;
+  }
+  
+  .detail-view{
+    color: var(--darkgrey)
+  }
+  
+  .subtitle-product-ab{
+    color: var(--darkgrey);
+    font-size: 16px;
+    position: relative;
+    top: -8px;
+  }
+  
+  
+input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+  }
+  
+  label {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 10px;
+    line-height: 36px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  label::before {
+    content: " ";
+    position: absolute;
+    top: 6px;
+    left: 0;
+    display: block;
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--green);
+    border-radius: 18px;
+    z-index: -1;
+  }
+  
+  input[type="radio"]:checked+label::before {
+    background-color: var(--green)
+  }
+  .logo-papa{
+    width: 128px;
+  }
+
+  .border-g{
+    border: 2px solid var(--green);
+    border-radius: 5px
+  }

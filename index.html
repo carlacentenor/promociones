@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+  <main class="containerPrincipal">
+    <div class="text-center">
+      <img class="logo-papa" src="https://cdn.glitch.com/91e28cb2-d37c-4e4b-92be-c94d260d314c%2Flogo-small-no-text-papa-johns.png?1531868931842"
+        alt="">
+    </div>
+    <section class="container-fluid ">
+      <div class="title-section p-2">
+        <div class="row">
+          <div class="col-2">
+            <img class="img-icon" src="" alt="">
+          </div>
+          <div class="col-10 pl-1"> Promociones</div>
+        </div>
+      </div>
+      <div class="container mb-4 mt-3">
+        <div class="row pt-2 pb-2 pl-0 pr-2 line-b">
+          <div class="col-9 ">
+            <p class="name-product mb-0"> Las Patriotas </p>
+            <p class="mb-0 subtitle-product">Deliciosa pizza de 8 slices desde S/40.90 </p>
+          </div>
+          <div class="col-3 text-right pr-0">
+            <span id="total-count-big" class="number-span">0</span>
+            <button class="btn-general ml-1" id="btn-patriotas">
+              <i class="fas fa-angle-right"></i>
+            </button>
+          </div>
+        </div>
+        <div class="row pt-2 pb-2 pl-0 pr-2 line-b">
+          <div class="col-9 ">
+            <p class="name-product mb-0"> La segunda pizza a S/ 1</p>
+            <p class="mb-0 subtitle-product">Deliciosa pizza de 10 slices desde S/50.90 </p>
+          </div>
+          <div class="col-3 text-right pr-0">
+            <span id="total-count-family" class="number-span">0</span>
+            <button class="btn-general ml-1" id="btn-segunda">
+              <i class="fas fa-angle-right"></i>
+            </button>
+          </div>
+        </div>
+        <div class="row pt-2 pb-2 pl-0 pr-2 line-b">
+          <div class="col-9 ">
+            <p class="name-product mb-0">Miércoles de Chicago</p>
+            <p class="mb-0 subtitle-product">Deliciosa pizza de 10 slices desde S/50.90 </p>
+          </div>
+          <div class="col-3 text-right pr-0">
+            <span id="total-count-family" class="number-span">0</span>
+            <button class="btn-general ml-1" id="btn-chicago">
+              <i class="fas fa-angle-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Section Confirmar resumen-->
+    <section class="detail-css">
+      <h5 class="mb-0">Detalle de Pedido</h5>
+      <div class="line"></div>
+      <div class="detail-view"></div>
+      <div>
+        <p class="delivery">*Costo Delivery : S/ 3.90</p>
+      </div>
+      <div class="num-total-delivery">
+        <span>Total : S/</span>
+        <span id="total">0</span>
+      </div>
+    </section>
+    <form id="preferencesForm">
+      <input id="resumen-pedido-big-total" type="hidden" name="detallepedidoBig">
+      <input id="resumen-pedido-family-total" type="hidden" name="detallepedidoFamily">
+      <input id="resumen-pedido-adicional-total" type="hidden" name="detallepedidoAdicional">
+      <input id="resumen-pedido-bebida-total" type="hidden" name="detallepedidoBebida">
+      <input type="hidden" name="userId">
+      <input type="hidden" name="blockName">
+      <button type="submit" class="btn-confirm text-center p-2" id="config" disabled>Confirmar
+
+      </button>
+    </form>
+  </main>
+  <!-- Section Promoción 2da a 1 sol -->
+  <section class="big-pizza-section">
+    <div class="container">
+      <div class="mt-2 mb-2">
+        <a class="back">
+          <span>
+            <</span> Volver</a>
+      </div>
+      <div class="title-section p-2">
+        <div class="row">
+          <div class="col-2">
+            <img class="img-icon" src="https://user-images.githubusercontent.com/32285482/42764450-426034d0-88db-11e8-83c1-30a752f4d596.png"
+              alt="">
+          </div>
+          <div class="col-10"> La segunda Pizza a S/ 1</div>
+        </div>
+      </div>
+      <div class="text-center p-3">
+        <p class="mb-0">Todos los martes y jueves llévate la 2da pizza a solo S/ 1</p>
+      </div>
+      <div>
+        <div class="border-g">
+          <p class="name-product pl-3 pt-2 mb-0">Elige Tamaño</p>
+          <div>
+            <form id=radiotipo class=" text-center">
+              <input type="radio" name="tipo" value="Grande" id="rb1" />
+              <label for="rb1">Grande (8 slices) </label>
+              <input type="radio" name="tipo" value="Familiar" id="rb2" />
+              <label for="rb2">Familiar (10 slices)</label>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+
+    <div class=" container">
+      <div class="row container-bigpizza"></div>
+    </div>
+    <div class="p-2 text-center btn-confirm-pizza confirm-big-js btn-confirm-promo2">Confirmar </div>
+  </section>
+
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
