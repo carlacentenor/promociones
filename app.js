@@ -1,9 +1,12 @@
 // DOM
 const section1 = $('.big-pizza-section');
 const btnSegunda = $('#btn-segunda');
+const btnPromoPrincipal = $('#btn-patriotas');
 const principal = $('.containerPrincipal');
 const containerBig = $('.container-bigpizza');
+const promoPrincipal = $('.promo-principal-section');
 const back = $('.back');
+const backPrincipal =$('.back-principal');
 const containerDetail = $('.detail-view');
 const confirm2da = $('.btn-confirm-promo2');
 let showTotal = $('#total');
@@ -13,11 +16,18 @@ const totalPromo2da = $('#total-count-family');
 
 // ocultando las secciones
 section1.hide();
+promoPrincipal.hide();
 // Promocion segunda a 1 sol
 btnSegunda.on('click', function () {
   section1.show();
   principal.hide();
 });
+
+btnPromoPrincipal.on('click',function(){
+  promoPrincipal.show();
+  principal.hide();
+})
+
 let arrayPromociones = [];
 let arrayBigPizza = [];
 let arrayFamilyPizza = [];
@@ -37,8 +47,14 @@ back.on('click', function () {
   $('#config').css('backgroundColor', '#A39D9B');
 });
 
+backPrincipal.on('click',function(){
+promoPrincipal.hide();
+principal.show();
+
+});
+
 // renderizando información en la web
-$.getJSON('https://my-json-server.typicode.com/carlacentenor/webview/db', function (data) {
+$.getJSON('https://api.myjson.com/bins/w94v6', function (data) {
   let pizzaBig = data.products.pizzas.grandes;
   let pizzaFamily = data.products.pizzas.familiares;
   pizzaBig.forEach(element => {
@@ -260,7 +276,7 @@ $('#radiotipo input').on('change', function () {
     localStorage.setItem('arrayBigPizza', JSON.stringify(arrayBigPizza));
     localStorage.setItem('arrayFinaly', JSON.stringify(arrayFinaly));
     containerBig.empty();
-    $.getJSON('https://my-json-server.typicode.com/carlacentenor/webview/db', function (data) {
+    $.getJSON('https://api.myjson.com/bins/w94v6', function (data) {
       let pizzaBig = data.products.pizzas.grandes;
       pizzaBig.forEach(element => {
         templateProducts(element, containerBig);
@@ -275,7 +291,7 @@ $('#radiotipo input').on('change', function () {
     localStorage.setItem('arrayBigPizza', JSON.stringify(arrayBigPizza));
     localStorage.setItem('arrayFinaly', JSON.stringify(arrayFinaly));
     containerBig.empty();
-    $.getJSON('https://my-json-server.typicode.com/carlacentenor/webview/db', function (data) {
+    $.getJSON('https://api.myjson.com/bins/w94v6', function (data) {
       let pizzaFamily = data.products.pizzas.familiares;
       pizzaFamily.forEach(element => {
         templateProducts(element, containerBig);
