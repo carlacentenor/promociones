@@ -36,20 +36,20 @@
           </div>
           <div class="col-3 text-right pr-0">
             <span id="total-count-big" class="number-span">0</span>
-            <button class="btn-general ml-1" id="btn-patriotas">
-              <i class="fas fa-angle-right"></i>
+            <button class="btn-general ml-1 text-center" id="btn-patriotas">
+              <span class="fas fa-angle-right"></span>
             </button>
           </div>
         </div>
         <div class="row pt-2 pb-2 pl-0 pr-2 line-b">
           <div class="col-9 ">
             <p class="name-product mb-0"> La segunda pizza a S/ 1</p>
-            <p class="mb-0 subtitle-product">Deliciosa pizza de 10 slices desde S/50.90 </p>
+            <p class="mb-0 subtitle-product">Llévate la segunda pizza a S/ 1 </p>
           </div>
           <div class="col-3 text-right pr-0">
             <span id="total-count-family" class="number-span">0</span>
-            <button class="btn-general ml-1" id="btn-segunda">
-              <i class="fas fa-angle-right"></i>
+            <button class="btn-general ml-1 text-center" id="btn-segunda">
+              <span class="fas fa-angle-right"></span>
             </button>
           </div>
         </div>
@@ -60,8 +60,8 @@
           </div>
           <div class="col-3 text-right pr-0">
             <span id="total-count-family" class="number-span">0</span>
-            <button class="btn-general ml-1" id="btn-chicago">
-              <i class="fas fa-angle-right"></i>
+            <button class="btn-general ml-1 text-center" id="btn-chicago">
+              <span class="fas fa-angle-right"></span>
             </button>
           </div>
         </div>
@@ -81,10 +81,9 @@
       </div>
     </section>
     <form id="preferencesForm">
-      <input id="resumen-pedido-big-total" type="hidden" name="detallepedidoBig">
-      <input id="resumen-pedido-family-total" type="hidden" name="detallepedidoFamily">
-      <input id="resumen-pedido-adicional-total" type="hidden" name="detallepedidoAdicional">
-      <input id="resumen-pedido-bebida-total" type="hidden" name="detallepedidoBebida">
+      <input id="resumen-pedido-promo2da" type="hidden" name="detallepedido2da">
+      <input id="resumentotal" type="hidden" name="total">
+
       <input type="hidden" name="userId">
       <input type="hidden" name="blockName">
       <button type="submit" class="btn-confirm text-center p-2" id="config" disabled>Confirmar
@@ -117,7 +116,7 @@
           <p class="name-product pl-3 pt-2 mb-0">Elige Tamaño</p>
           <div>
             <form id=radiotipo class=" text-center">
-              <input type="radio" name="tipo" value="Grande" id="rb1" />
+              <input type="radio" name="tipo" value="Grande" checked id="rb1" />
               <label for="rb1">Grande (8 slices) </label>
               <input type="radio" name="tipo" value="Familiar" id="rb2" />
               <label for="rb2">Familiar (10 slices)</label>
@@ -127,15 +126,67 @@
 
       </div>
     </div>
-
-
-
     <div class=" container">
       <div class="row container-bigpizza"></div>
     </div>
-    <div class="p-2 text-center btn-confirm-pizza confirm-big-js btn-confirm-promo2">Confirmar </div>
+    <div class="text-center">
+      <span class="text-alert"></span>
+    </div>
+    <div>
+
+      <button class="p-2 text-center btn-confirm-pizza confirm-big-js btn-confirm-promo2">Confirmar</button>
+    </div>
   </section>
 
+  <!-- Patriotas -->
+  <section class="big-pizza-section">
+    <div class="container">
+      <div class="mt-2 mb-2">
+        <a class="back">
+          <span>
+            <</span> Volver</a>
+      </div>
+      <div class="title-section p-2">
+        <div class="row">
+          <div class="col-2">
+            <img class="img-icon" src="https://user-images.githubusercontent.com/32285482/42764450-426034d0-88db-11e8-83c1-30a752f4d596.png"
+              alt="">
+          </div>
+          <div class="col-10"> Las Patriotas</div>
+        </div>
+      </div>
+      <div class="text-center p-3">
+        <p class="mb-0">En el mes patrio Papa John's te trae las Patriotas!</p>
+        <p>Elige entre : The Works , La favorita de John , Americana o Vegetariana</p>
+        <p>En tamaño grande : 1 pizza a S/ 39.90 o llévate 2 a S/59.90</p>
+        <p>En tamaño familiar : 1 pizza a S/ 44.90 o llévate 2 a S/ 69.90</p>
+      </div>
+      <div>
+        <div class="border-g">
+          <p class="name-product pl-3 pt-2 mb-0">Elige Tamaño</p>
+          <div>
+            <form id=radiotipo class=" text-center">
+              <input type="radio" name="tipo" value="Grande" checked id="rb1" />
+              <label for="rb1">Grande (8 slices) </label>
+              <input type="radio" name="tipo" value="Familiar" id="rb2" />
+              <label for="rb2">Familiar (10 slices)</label>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class=" container">
+      <div class="row container-promoprincipal"></div>
+    </div>
+    <div class="text-center">
+      <span class="text-alert"></span>
+    </div>
+    <div>
+
+      <button class="p-2 text-center btn-confirm-pizza confirm-big-js btn-confirm-promo2">Confirmar</button>
+    </div>
+  </section>
 
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="app.js"></script>

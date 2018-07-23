@@ -4,9 +4,13 @@ const btnSegunda = $('#btn-segunda');
 const principal = $('.containerPrincipal');
 const containerBig = $('.container-bigpizza');
 const back = $('.back');
+const containerDetail = $('.detail-view');
 const confirm2da = $('.btn-confirm-promo2');
-let price1 = 0;
-let price2 = 0;
+let showTotal = $('#total');
+let totalFinal = 0;
+let delivery = 3.90;
+const totalPromo2da = $('#total-count-family');
+
 // ocultando las secciones
 section1.hide();
 // Promocion segunda a 1 sol
@@ -14,7 +18,7 @@ btnSegunda.on('click', function () {
   section1.show();
   principal.hide();
 });
-
+let arrayPromociones = [];
 let arrayBigPizza = [];
 let arrayFamilyPizza = [];
 let arrayAdicional = [];
@@ -25,6 +29,12 @@ let arrayFinaly = [];
 back.on('click', function () {
   section1.hide();
   principal.show();
+  containerDetail.empty();
+  arrayFinaly = [];
+  showTotal.text(0);
+  totalPromo2da.text(0);
+  $('#config').attr('disabled', true);
+  $('#config').css('backgroundColor', '#A39D9B');
 });
 
 // renderizando información en la web
@@ -74,6 +84,9 @@ $(document).on('click', '.decrement', function () {
 })
 
 
+// Validacion de 2 pizzas 
+confirm2da.attr('disabled', true);
+confirm2da.css('backgroundColor', '#A39D9B');
 
 
 
@@ -87,16 +100,29 @@ let incrementTotal = (price, idNumberBox, name, type, detail) => {
   let final = parseFloat(price) + parseFloat(totalPedido);
   localStorage.setItem('totalFinal', final.toFixed(1));
   // almacenando data de costo total
-  arrayBigPizza.push({'detalle': detail ,'precio':price });
-  arrayFinaly.push({'detalle': detail ,'precio':price });
+  arrayBigPizza.push({
+    'detalle': name,
+    'precio': price,
+    'tamaño': type
+  });
+  arrayFinaly.push({
+    'detalle': name,
+    'precio': price,
+    'tamaño': type
+  });
   localStorage.setItem('arrayBigPizza', JSON.stringify(arrayBigPizza));
   localStorage.setItem('arrayFinaly', JSON.stringify(arrayFinaly));
   let countPedido = JSON.parse(localStorage.arrayFinaly);
-  
 
-  
-
-
+  if (countPedido.length < 2 || countPedido.length > 2) {
+    confirm2da.attr('disabled', true);
+    confirm2da.css('backgroundColor', '#A39D9B');
+    $('.text-alert').text(' * Debes elegir solo 2 pizzas');
+  } else {
+    confirm2da.removeAttr('disabled', 'disabled');
+    confirm2da.css('backgroundColor', '#009774');
+    $('.text-alert').text('');
+  }
 };
 
 
@@ -111,25 +137,154 @@ let decrementTotal = (price, idNumberBox, name, type, detail) => {
     $(`#${idNumberBox}`).text(number); // mostrando valores 
     let final = parseFloat(totalPedido) - parseFloat(price);
     localStorage.setItem('totalFinal', final.toFixed(1));
-   
+
     // Encontrar el valor y eliminarlo
     let countPedido = JSON.parse(localStorage.arrayFinaly);
-      
-      let index = arrayBigPizza.indexOf(detail);
-      let indexDetail = arrayFinaly.indexOf(detail);//for
-      arrayBigPizza.splice(index, 1);
-      arrayFinaly.splice(indexDetail, 1);
-      localStorage.setItem('arrayBigPizza', JSON.stringify(arrayBigPizza));
-      localStorage.setItem('arrayFinaly', JSON.stringify(arrayFinaly));
-     
-
-    
+    // encontrar el valor y borrarlo 
+    for (j = 0; j < arrayBigPizza.length; j++) {
+      if (name == arrayBigPizza[j].detalle) {
+        arrayBigPizza.splice(j, 1);
+      }
     }
 
-  
+    for (i = 0; i < arrayFinaly.length; i++) {
+      if (name == arrayFinaly[i].detalle) {
+        arrayFinaly.splice(i, 1);
+      }
+    }
+
+    localStorage.setItem('arrayBigPizza', JSON.stringify(arrayBigPizza));
+    localStorage.setItem('arrayFinaly', JSON.stringify(arrayFinaly));
+    countPedido = JSON.parse(localStorage.arrayFinaly);
+    if (countPedido.length < 2 || countPedido.length > 2) {
+      confirm2da.attr('disabled', true);
+      confirm2da.css('backgroundColor', '#A39D9B');
+      $('.text-alert').text(' * Debes elegir solo 2 pizzas');
+    } else {
+      confirm2da.removeAttr('disabled', 'disabled');
+      confirm2da.css('backgroundColor', '#009774');
+      $('.text-alert').text('');
+    }
+
+  }
+
+
 };
 
 
+
+confirm2da.on('click', function () {
+  section1.hide();
+  principal.show();
+  containerDetail.empty();
+
+  let arrayPromoSelect = JSON.parse(localStorage.arrayFinaly);
+
+  let pizza1 = arrayPromoSelect[0];
+  let pizza2 = arrayPromoSelect[1];
+
+  if (pizza1.precio > pizza2.precio) {
+
+    pizza2.precio = 1;
+    totalFinal = pizza1.precio + pizza2.precio + delivery;
+    showTotal.text(totalFinal.toFixed(1));
+    localStorage.setItem('totalFinal', totalFinal.toFixed(1));
+    let templateView = `<div>
+    <p class="mb-0 title-promo">Promoción la 2da a S/ 1 </p>
+    <p class="mb-0">1 Pizza ${pizza2.detalle} ${pizza2.tamaño} a S/ ${pizza2.precio} </p>
+    <p class="mb-0">1 Pizza ${pizza1.detalle} ${pizza1.tamaño} a S/ ${pizza1.precio} </p>
+    </div>`;
+    containerDetail.append(templateView);
+
+  }
+  if (pizza1.precio < pizza2.precio) {
+
+    pizza1.precio = 1;
+    totalFinal = pizza2.precio + pizza1.precio + delivery;
+    localStorage.setItem('totalFinal', totalFinal.toFixed(1));
+    showTotal.text(totalFinal.toFixed(1));
+    let templateView = `<div>
+    <p class="mb-0 title-promo">Promoción la 2da a S/ 1 </p>
+    <p class="mb-0">1 Pizza ${pizza2.detalle} ${pizza2.tamaño} a S/ ${pizza2.precio} </p>
+    <p class="mb-0">1 Pizza ${pizza1.detalle} ${pizza1.tamaño} a S/ ${pizza1.precio} </p>
+  </div>`;
+    containerDetail.append(templateView);
+  }
+  if (pizza1.precio == pizza2.precio) {
+
+    pizza1.precio = 1;
+    totalFinal = pizza2.precio + pizza1.precio + delivery;
+    localStorage.setItem('totalFinal', totalFinal.toFixed(1));
+    showTotal.text(totalFinal.toFixed(1));
+
+    let templateView = `<div>
+    <p class="mb-0 title-promo">Promoción la 2da a S/ 1 </p>
+    <p class="mb-0">1 Pizza ${pizza1.detalle} ${pizza1.tamaño} a S/ ${pizza1.precio} </p>
+    <p class="mb-0">1 Pizza ${pizza2.detalle} ${pizza2.tamaño} a S/ ${pizza2.precio} </p>
+  </div>`;
+    containerDetail.append(templateView);
+  }
+
+  arrayPromociones.push({
+    pizza1,
+    pizza2,
+    total: pizza1.precio + pizza2.precio
+  });
+  totalPromo2da.text('1');
+
+  localStorage.setItem('arrayPromociones', JSON.stringify(arrayPromociones));
+
+  $('#resumen-pedido-promo2da').val(`1 pizza ${pizza1.detalle} ${pizza1.tamaño} S/${pizza1.precio} \n 1 pizza ${pizza2.detalle} ${pizza2.tamaño} S/ ${pizza2.precio}  `);
+  $('#resumentotal').val(totalFinal);
+  let countFinally = JSON.parse(localStorage.arrayPromociones);
+  if (countFinally.length > 0) {
+    $('#config').removeAttr('disabled');
+    $('#config').css('backgroundColor', '#009774');
+  }
+  if (countFinally.length == 0) {
+
+    $('#config').attr('disabled', true);
+    $('#config').css('backgroundColor', '#A39D9B');
+  }
+
+});
+
+
+// Valor de radio button Pizza Grande y Familiar
+
+$('#radiotipo input').on('change', function () {
+  typeHome = $('input[name=tipo]:checked', '#radiotipo').val();
+  if (typeHome == 'Grande') {
+    arrayBigPizza = [];
+    arrayFinaly = [];
+    localStorage.setItem('arrayBigPizza', JSON.stringify(arrayBigPizza));
+    localStorage.setItem('arrayFinaly', JSON.stringify(arrayFinaly));
+    containerBig.empty();
+    $.getJSON('https://my-json-server.typicode.com/carlacentenor/webview/db', function (data) {
+      let pizzaBig = data.products.pizzas.grandes;
+      pizzaBig.forEach(element => {
+        templateProducts(element, containerBig);
+      });
+
+
+    });
+  }
+  if (typeHome == 'Familiar') {
+    arrayBigPizza = [];
+    arrayFinaly = [];
+    localStorage.setItem('arrayBigPizza', JSON.stringify(arrayBigPizza));
+    localStorage.setItem('arrayFinaly', JSON.stringify(arrayFinaly));
+    containerBig.empty();
+    $.getJSON('https://my-json-server.typicode.com/carlacentenor/webview/db', function (data) {
+      let pizzaFamily = data.products.pizzas.familiares;
+      pizzaFamily.forEach(element => {
+        templateProducts(element, containerBig);
+      });
+
+
+    });
+  }
+});
 
 
 
