@@ -6,26 +6,30 @@ const principal = $('.containerPrincipal');
 const containerBig = $('.container-bigpizza');
 const promoPrincipal = $('.promo-principal-section');
 const back = $('.back');
-const backPrincipal =$('.back-principal');
+const backPrincipal = $('.back-principal');
 const containerDetail = $('.detail-view');
 const confirm2da = $('.btn-confirm-promo2');
+const confirmPrincipal = $('.btn-confirm-promo-principal');
 let showTotal = $('#total');
+let totalPromoPrincipal;
 let totalFinal = 0;
 let delivery = 3.90;
 const totalPromo2da = $('#total-count-family');
-
-// ocultando las secciones
+let countPizzaTotal = 1;
+let sizePizza = "Grande";; // ocultando las secciones
 section1.hide();
 promoPrincipal.hide();
 // Promocion segunda a 1 sol
 btnSegunda.on('click', function () {
   section1.show();
   principal.hide();
+  localStorage.setItem('promocion', 'segunda1sol')
 });
 
-btnPromoPrincipal.on('click',function(){
+btnPromoPrincipal.on('click', function () {
   promoPrincipal.show();
   principal.hide();
+  localStorage.setItem('promocion', 'principal')
 })
 
 let arrayPromociones = [];
@@ -34,6 +38,7 @@ let arrayFamilyPizza = [];
 let arrayAdicional = [];
 let arrayBebidas = [];
 let arrayFinaly = [];
+let arrayPromoPrincipal = [];
 
 // regresar a la ventana principal
 back.on('click', function () {
@@ -47,9 +52,9 @@ back.on('click', function () {
   $('#config').css('backgroundColor', '#A39D9B');
 });
 
-backPrincipal.on('click',function(){
-promoPrincipal.hide();
-principal.show();
+backPrincipal.on('click', function () {
+  promoPrincipal.hide();
+  principal.show();
 
 });
 
@@ -87,7 +92,9 @@ $(document).on('click', '.decrement', function () {
   let namePizza = $(this).data('name');
   let type = $(this).data('type');
   let detail = $(this).data('detail');
+
   let idNumber = $(this)[0].parentElement.nextElementSibling.id;
+
   decrementTotal(price, idNumber, namePizza, type, detail);
   let number = $(this)[0].parentElement.nextElementSibling;
   let btnDecrement = $(this)[0].parentElement.nextElementSibling.nextElementSibling.children[0].id;
@@ -100,78 +107,39 @@ $(document).on('click', '.decrement', function () {
 })
 
 
-// Validacion de 2 pizzas 
+// Desactivar boton confirmar al iniciar
 confirm2da.attr('disabled', true);
 confirm2da.css('backgroundColor', '#A39D9B');
-
+confirmPrincipal.attr('disabled', true);
+confirmPrincipal.css('backgroundColor', '#A39D9B');
 
 
 
 // Funciones de Incrementar/Decrementar Precio
 let incrementTotal = (price, idNumberBox, name, type, detail) => {
-  let totalPedido = localStorage.getItem('totalFinal');
-  let number = $(`#${idNumberBox}`).text();
-  number = parseInt(number) + 1; // valor del número central
-  $(`#${idNumberBox}`).text(number); // mostrando valores
-  let final = parseFloat(price) + parseFloat(totalPedido);
-  localStorage.setItem('totalFinal', final.toFixed(1));
-  // almacenando data de costo total
-  arrayBigPizza.push({
-    'detalle': name,
-    'precio': price,
-    'tamaño': type
-  });
-  arrayFinaly.push({
-    'detalle': name,
-    'precio': price,
-    'tamaño': type
-  });
-  localStorage.setItem('arrayBigPizza', JSON.stringify(arrayBigPizza));
-  localStorage.setItem('arrayFinaly', JSON.stringify(arrayFinaly));
-  let countPedido = JSON.parse(localStorage.arrayFinaly);
-
-  if (countPedido.length < 2 || countPedido.length > 2) {
-    confirm2da.attr('disabled', true);
-    confirm2da.css('backgroundColor', '#A39D9B');
-    $('.text-alert').text(' * Debes elegir solo 2 pizzas');
-  } else {
-    confirm2da.removeAttr('disabled', 'disabled');
-    confirm2da.css('backgroundColor', '#009774');
-    $('.text-alert').text('');
-  }
-};
-
-
-
-
-let decrementTotal = (price, idNumberBox, name, type, detail) => {
-
-  let totalPedido = localStorage.getItem('totalFinal');
-  let number = $(`#${idNumberBox}`).text();
-  number = parseInt(number) - 1;
-  if (number >= 0) {
-    $(`#${idNumberBox}`).text(number); // mostrando valores 
-    let final = parseFloat(totalPedido) - parseFloat(price);
+  let promo = localStorage.getItem('promocion');
+  if (promo == "segunda1sol") {
+    let totalPedido = localStorage.getItem('totalFinal');
+    let number = $(`#${idNumberBox}`).text();
+    number = parseInt(number) + 1; // valor del número central
+    $(`#${idNumberBox}`).text(number); // mostrando valores
+    let final = parseFloat(price) + parseFloat(totalPedido);
     localStorage.setItem('totalFinal', final.toFixed(1));
-
-    // Encontrar el valor y eliminarlo
-    let countPedido = JSON.parse(localStorage.arrayFinaly);
-    // encontrar el valor y borrarlo 
-    for (j = 0; j < arrayBigPizza.length; j++) {
-      if (name == arrayBigPizza[j].detalle) {
-        arrayBigPizza.splice(j, 1);
-      }
-    }
-
-    for (i = 0; i < arrayFinaly.length; i++) {
-      if (name == arrayFinaly[i].detalle) {
-        arrayFinaly.splice(i, 1);
-      }
-    }
-
+    // almacenando data de costo total
+    arrayBigPizza.push({
+      'detalle': name,
+      'precio': price,
+      'tamaño': type
+    });
+    arrayFinaly.push({
+      'detalle': name,
+      'precio': price,
+      'tamaño': type
+    });
     localStorage.setItem('arrayBigPizza', JSON.stringify(arrayBigPizza));
     localStorage.setItem('arrayFinaly', JSON.stringify(arrayFinaly));
-    countPedido = JSON.parse(localStorage.arrayFinaly);
+    let countPedido = JSON.parse(localStorage.arrayFinaly);
+
     if (countPedido.length < 2 || countPedido.length > 2) {
       confirm2da.attr('disabled', true);
       confirm2da.css('backgroundColor', '#A39D9B');
@@ -181,8 +149,154 @@ let decrementTotal = (price, idNumberBox, name, type, detail) => {
       confirm2da.css('backgroundColor', '#009774');
       $('.text-alert').text('');
     }
+  }
+  if (promo == "principal") {
+    let totalPedido = localStorage.getItem('totalFinal');
+
+    let numberPrincipal = $(`#${idNumberBox}`).text();
+    numberPrincipal = parseInt(numberPrincipal) + 1; // valor del número central
+    $(`#${idNumberBox}`).text(numberPrincipal); // mostrando valores
+    arrayPromoPrincipal.push({
+      'detalle': name,
+      'tamaño': sizePizza
+    });
+    localStorage.setItem('arrayPromoPrincipal', JSON.stringify(arrayPromoPrincipal));
+    if (sizePizza == "Grande" && countPizzaTotal == 1) {
+      totalPromoPrincipal = 39.90;
+      localStorage.setItem('totalPromoPrincipal', JSON.stringify(totalPromoPrincipal));
+    } else if (sizePizza == "Familiar" && countPizzaTotal == 1) {
+      totalPromoPrincipal = 44.90;
+      localStorage.setItem('totalPromoPrincipal', JSON.stringify(totalPromoPrincipal));
+    } else if (sizePizza == "Grande" && countPizzaTotal == 2) {
+      totalPromoPrincipal = 59.90;
+      localStorage.setItem('totalPromoPrincipal', JSON.stringify(totalPromoPrincipal));
+    } else if (sizePizza == "Familiar" && countPizzaTotal == 2) {
+      totalPromoPrincipal = 69.90;
+      localStorage.setItem('totalPromoPrincipal', JSON.stringify(totalPromoPrincipal));
+    } else {
+      totalPromoPrincipal = 0;
+      localStorage.setItem('totalPromoPrincipal', JSON.stringify(totalPromoPrincipal));
+    }
+
+    countPromoFinal = JSON.parse(localStorage.arrayPromoPrincipal);
+
+
+    if (countPizzaTotal == 2) {
+      if (countPromoFinal.length > 2 || countPromoFinal.length < 2) {
+        confirmPrincipal.attr('disabled', true);
+        confirmPrincipal.css('backgroundColor', '#A39D9B');
+        $('.text-alert-principal').text(' * Debes elegir solo 2 pizzas');
+      } else {
+        confirmPrincipal.removeAttr('disabled', 'disabled');
+        confirmPrincipal.css('backgroundColor', '#009774');
+        $('.text-alert-principal').text('');
+      }
+
+    }
+    if (countPizzaTotal == 1) {
+      if (countPromoFinal.length > 1 || countPromoFinal.length < 1) {
+        confirmPrincipal.attr('disabled', true);
+        confirmPrincipal.css('backgroundColor', '#A39D9B');
+        $('.text-alert-principal').text(' * Debes elegir solo 1 pizza');
+      } else {
+        confirmPrincipal.removeAttr('disabled', 'disabled');
+        confirmPrincipal.css('backgroundColor', '#009774');
+        $('.text-alert-principal').text('');
+      }
+
+    }
 
   }
+
+};
+
+
+
+
+let decrementTotal = (price, idNumberBox, name, type, detail) => {
+  let promo = localStorage.getItem('promocion');
+  if (promo == "segunda1sol") {
+    let totalPedido = localStorage.getItem('totalFinal');
+    let number = $(`#${idNumberBox}`).text();
+    number = parseInt(number) - 1;
+    if (number >= 0) {
+      $(`#${idNumberBox}`).text(number); // mostrando valores 
+      let final = parseFloat(totalPedido) - parseFloat(price);
+      localStorage.setItem('totalFinal', final.toFixed(1));
+
+      // Encontrar el valor y eliminarlo
+      let countPedido = JSON.parse(localStorage.arrayFinaly);
+      // encontrar el valor y borrarlo 
+      for (j = 0; j < arrayBigPizza.length; j++) {
+        if (name == arrayBigPizza[j].detalle) {
+          arrayBigPizza.splice(j, 1);
+        }
+      }
+
+      for (i = 0; i < arrayFinaly.length; i++) {
+        if (name == arrayFinaly[i].detalle) {
+          arrayFinaly.splice(i, 1);
+        }
+      }
+
+      localStorage.setItem('arrayBigPizza', JSON.stringify(arrayBigPizza));
+      localStorage.setItem('arrayFinaly', JSON.stringify(arrayFinaly));
+      countPedido = JSON.parse(localStorage.arrayFinaly);
+      if (countPedido.length < 2 || countPedido.length > 2) {
+        confirm2da.attr('disabled', true);
+        confirm2da.css('backgroundColor', '#A39D9B');
+        $('.text-alert').text(' * Debes elegir solo 2 pizzas');
+      } else {
+        confirm2da.removeAttr('disabled', 'disabled');
+        confirm2da.css('backgroundColor', '#009774');
+        $('.text-alert').text('');
+      }
+
+    }
+  }
+  if (promo == "principal") {
+    let numberPrincipal = $(`#${idNumberBox}`).text();
+    numberPrincipal = parseInt(numberPrincipal) - 1;
+
+    if (numberPrincipal >= 0) {
+      $(`#${idNumberBox}`).text(numberPrincipal); // mostrando valores   
+      // Encontrar el valor y eliminarlo
+      let countPedidoPromo = JSON.parse(localStorage.arrayPromoPrincipal);
+      for (k = 0; k < arrayPromoPrincipal.length; k++) {
+        if (name == arrayPromoPrincipal[k].detalle) {
+          arrayPromoPrincipal.splice(k, 1);
+        }
+      }
+      localStorage.setItem('arrayPromoPrincipal', JSON.stringify(arrayPromoPrincipal));
+    }
+
+    countPromoFinal = JSON.parse(localStorage.arrayPromoPrincipal);
+    if (countPizzaTotal == 2) {
+      if (countPromoFinal.length > 2 || countPromoFinal.length < 2) {
+        confirmPrincipal.attr('disabled', true);
+        confirmPrincipal.css('backgroundColor', '#A39D9B');
+        $('.text-alert-principal').text(' * Debes elegir solo 2 pizzas');
+      } else {
+        confirmPrincipal.removeAttr('disabled', 'disabled');
+        confirmPrincipal.css('backgroundColor', '#009774');
+        $('.text-alert-principal').text('');
+      }
+
+    }
+    if (countPizzaTotal == 1) {
+      if (countPromoFinal.length > 1 || countPromoFinal.length < 1) {
+        confirmPrincipal.attr('disabled', true);
+        confirmPrincipal.css('backgroundColor', '#A39D9B');
+        $('.text-alert-principal').text(' * Debes elegir solo 1 pizza');
+      } else {
+        confirmPrincipal.removeAttr('disabled', 'disabled');
+        confirmPrincipal.css('backgroundColor', '#009774');
+        $('.text-alert-principal').text('');
+      }
+
+    }
+  }
+
 
 
 };
@@ -266,6 +380,43 @@ confirm2da.on('click', function () {
 });
 
 
+// Confirmar Promo Principal
+
+confirmPrincipal.on('click', function () {
+  promoPrincipal.hide();
+  principal.show();
+  containerDetail.empty();
+
+  let arrayPromoSelect = JSON.parse(localStorage.arrayPromoPrincipal);
+  let precioPromoSelect = localStorage.totalPromoPrincipal;
+  let final = delivery + parseFloat(precioPromoSelect);
+  localStorage.setItem('totalFinal', final);
+  showTotal.text(final.toFixed(1));
+  if (arrayPromoSelect.length == 1) {
+    let pizza1 = arrayPromoPrincipal[0];
+    let templateView = `<div>
+    <p class="mb-0 title-promo">Promoción las patriotas S/ ${precioPromoSelect} </p>
+    <p class="mb-0">1 Pizza ${pizza1.detalle} ${pizza1.tamaño}  </p>
+  </div>`;
+    containerDetail.append(templateView);
+  }
+  if (arrayPromoSelect.length == 2) {
+    let pizza1 = arrayPromoPrincipal[0];
+    let pizza2 = arrayPromoPrincipal[1];
+    let templateView = `<div>
+    <p class="mb-0 title-promo">Promoción las patriotas S/ ${precioPromoSelect} </p>
+    <p class="mb-0">1 Pizza ${pizza1.detalle} ${pizza1.tamaño}  </p>
+    <p class="mb-0">1 Pizza ${pizza2.detalle} ${pizza2.tamaño}  </p>
+  </div>`;
+    containerDetail.append(templateView);
+  }
+
+
+});
+
+
+
+
 // Valor de radio button Pizza Grande y Familiar
 
 $('#radiotipo input').on('change', function () {
@@ -331,3 +482,52 @@ let templateProducts = (element, container) => {
 </div>`;
   container.append(template);
 }
+
+
+// Promoción principal
+// Seleccionando cantidad
+$('#radiotipo2 input').on('change', function () {
+  countPromoPrincipal = $('input[name=tipo]:checked', '#radiotipo2').val();
+  if (countPromoPrincipal == 1) {
+    countPizzaTotal = 1;
+    if (countPromoFinal.length > 1 || countPromoFinal.length < 1) {
+      confirmPrincipal.attr('disabled', true);
+      confirmPrincipal.css('backgroundColor', '#A39D9B');
+      $('.text-alert-principal').text(' * Debes elegir solo 2 pizzas');
+    } else {
+      confirmPrincipal.removeAttr('disabled', 'disabled');
+      confirmPrincipal.css('backgroundColor', '#009774');
+      $('.text-alert-principal').text('');
+    }
+
+  }
+  if (countPromoPrincipal == 2) {
+    countPizzaTotal = 2;
+    if (countPromoFinal.length > 2 || countPromoFinal.length < 2) {
+      confirmPrincipal.attr('disabled', true);
+      confirmPrincipal.css('backgroundColor', '#A39D9B');
+      $('.text-alert-principal').text(' * Debes elegir solo 2 pizzas');
+    } else {
+      confirmPrincipal.removeAttr('disabled', 'disabled');
+      confirmPrincipal.css('backgroundColor', '#009774');
+      $('.text-alert-principal').text('');
+    }
+
+
+
+
+
+  }
+
+});
+// Seleccionando Tamaño
+$('#radiotipo3 input').on('change', function () {
+  sizePizza = $('input[name=tipo]:checked', '#radiotipo3').val();
+  if (sizePizza == "Grande") {
+    sizePizza = "Grande"
+  }
+  if (sizePizza == "Familiar") {
+    sizePizza = "Familiar"
+  }
+
+});
