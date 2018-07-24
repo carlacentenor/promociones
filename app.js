@@ -13,6 +13,8 @@ const confirmPrincipal = $('.btn-confirm-promo-principal');
 let showTotal = $('#total');
 let totalPromoPrincipal;
 let totalFinal = 0;
+let prueba = 0;
+localStorage.setItem('totalFinal', totalFinal);
 let delivery = 3.90;
 const totalPromo2da = $('#total-count-family');
 let countPizzaTotal = 1;
@@ -123,8 +125,7 @@ let incrementTotal = (price, idNumberBox, name, type, detail) => {
     let number = $(`#${idNumberBox}`).text();
     number = parseInt(number) + 1; // valor del número central
     $(`#${idNumberBox}`).text(number); // mostrando valores
-    let final = parseFloat(price) + parseFloat(totalPedido);
-    localStorage.setItem('totalFinal', final.toFixed(1));
+    
     // almacenando data de costo total
     arrayBigPizza.push({
       'detalle': name,
@@ -178,7 +179,7 @@ let incrementTotal = (price, idNumberBox, name, type, detail) => {
       localStorage.setItem('totalPromoPrincipal', JSON.stringify(totalPromoPrincipal));
     }
 
-    countPromoFinal = JSON.parse(localStorage.arrayPromoPrincipal);
+    let countPromoFinal = JSON.parse(localStorage.arrayPromoPrincipal);
 
 
     if (countPizzaTotal == 2) {
@@ -221,8 +222,7 @@ let decrementTotal = (price, idNumberBox, name, type, detail) => {
     number = parseInt(number) - 1;
     if (number >= 0) {
       $(`#${idNumberBox}`).text(number); // mostrando valores 
-      let final = parseFloat(totalPedido) - parseFloat(price);
-      localStorage.setItem('totalFinal', final.toFixed(1));
+      
 
       // Encontrar el valor y eliminarlo
       let countPedido = JSON.parse(localStorage.arrayFinaly);
@@ -304,6 +304,7 @@ let decrementTotal = (price, idNumberBox, name, type, detail) => {
 
 
 confirm2da.on('click', function () {
+  prueba = 0;
   section1.hide();
   principal.show();
   containerDetail.empty();
@@ -317,53 +318,60 @@ confirm2da.on('click', function () {
 
     pizza2.precio = 1;
     totalFinal = pizza1.precio + pizza2.precio + delivery;
-    showTotal.text(totalFinal.toFixed(1));
-    localStorage.setItem('totalFinal', totalFinal.toFixed(1));
-    let templateView = `<div>
-    <p class="mb-0 title-promo">Promoción la 2da a S/ 1 </p>
-    <p class="mb-0">1 Pizza ${pizza2.detalle} ${pizza2.tamaño} a S/ ${pizza2.precio} </p>
-    <p class="mb-0">1 Pizza ${pizza1.detalle} ${pizza1.tamaño} a S/ ${pizza1.precio} </p>
-    </div>`;
-    containerDetail.append(templateView);
+   // showTotal.text(totalFinal.toFixed(1));
+   // localStorage.setItem('totalFinal', totalFinal.toFixed(1));
+
 
   }
   if (pizza1.precio < pizza2.precio) {
 
     pizza1.precio = 1;
     totalFinal = pizza2.precio + pizza1.precio + delivery;
-    localStorage.setItem('totalFinal', totalFinal.toFixed(1));
-    showTotal.text(totalFinal.toFixed(1));
-    let templateView = `<div>
-    <p class="mb-0 title-promo">Promoción la 2da a S/ 1 </p>
-    <p class="mb-0">1 Pizza ${pizza2.detalle} ${pizza2.tamaño} a S/ ${pizza2.precio} </p>
-    <p class="mb-0">1 Pizza ${pizza1.detalle} ${pizza1.tamaño} a S/ ${pizza1.precio} </p>
-  </div>`;
-    containerDetail.append(templateView);
+   // localStorage.setItem('totalFinal', totalFinal.toFixed(1));
+   // showTotal.text(totalFinal.toFixed(1));
+
   }
   if (pizza1.precio == pizza2.precio) {
 
     pizza1.precio = 1;
     totalFinal = pizza2.precio + pizza1.precio + delivery;
-    localStorage.setItem('totalFinal', totalFinal.toFixed(1));
-    showTotal.text(totalFinal.toFixed(1));
+   // localStorage.setItem('totalFinal', totalFinal.toFixed(1));
+   // showTotal.text(totalFinal.toFixed(1));
 
-    let templateView = `<div>
-    <p class="mb-0 title-promo">Promoción la 2da a S/ 1 </p>
-    <p class="mb-0">1 Pizza ${pizza1.detalle} ${pizza1.tamaño} a S/ ${pizza1.precio} </p>
-    <p class="mb-0">1 Pizza ${pizza2.detalle} ${pizza2.tamaño} a S/ ${pizza2.precio} </p>
-  </div>`;
-    containerDetail.append(templateView);
+
   }
-
+  let promo = localStorage.getItem('promocion');
   arrayPromociones.push({
-    pizza1,
-    pizza2,
+    promocion: promo,
+    detalle: {
+      pizza1: pizza1.detalle + ' ' + pizza1.tamaño + ' ' + pizza1.precio,
+      pizza2: pizza2.detalle + ' ' + pizza2.tamaño + ' ' + pizza2.precio
+    },
     total: pizza1.precio + pizza2.precio
   });
   totalPromo2da.text('1');
 
   localStorage.setItem('arrayPromociones', JSON.stringify(arrayPromociones));
+  let totalPedidoPromo = JSON.parse(localStorage.arrayPromociones);
 
+  totalPedidoPromo.forEach(element => {
+    let templateView = `<div>
+  <p class="mb-0 title-promo">${element.promocion}  ${element.total}</p>
+  <p class="mb-0">1 Pizza ${element.detalle.pizza1}</p>
+  <p class="mb-0">1 Pizza ${element.detalle.pizza2}</p>
+  </div>`;
+  let tot = parseFloat(element.total);
+
+  prueba += tot;
+
+    localStorage.setItem('totalFinal', prueba);
+    containerDetail.append(templateView);
+  });
+
+
+  let numberTotal =localStorage.getItem('totalFinal');
+  showTotal.text(numberTotal);
+  
   $('#resumen-pedido-promo2da').val(`1 pizza ${pizza1.detalle} ${pizza1.tamaño} S/${pizza1.precio} \n 1 pizza ${pizza2.detalle} ${pizza2.tamaño} S/ ${pizza2.precio}  `);
   $('#resumentotal').val(totalFinal);
   let countFinally = JSON.parse(localStorage.arrayPromociones);
@@ -386,32 +394,74 @@ confirmPrincipal.on('click', function () {
   promoPrincipal.hide();
   principal.show();
   containerDetail.empty();
-
+prueba = 0;
   let arrayPromoSelect = JSON.parse(localStorage.arrayPromoPrincipal);
   let precioPromoSelect = localStorage.totalPromoPrincipal;
-  let final = delivery + parseFloat(precioPromoSelect);
-  localStorage.setItem('totalFinal', final);
-  showTotal.text(final.toFixed(1));
+  
+
+ // showTotal.text(final.toFixed(1));
   if (arrayPromoSelect.length == 1) {
     let pizza1 = arrayPromoPrincipal[0];
-    let templateView = `<div>
-    <p class="mb-0 title-promo">Promoción las patriotas S/ ${precioPromoSelect} </p>
-    <p class="mb-0">1 Pizza ${pizza1.detalle} ${pizza1.tamaño}  </p>
-  </div>`;
-    containerDetail.append(templateView);
+    let promo = localStorage.getItem('promocion');
+    arrayPromociones.push({
+      promocion: promo,
+      detalle: {
+        pizza1: pizza1.detalle + ' ' + pizza1.tamaño,
+        pizza2: ''
+      },
+      total: precioPromoSelect
+    });
+    localStorage.setItem('arrayPromociones', JSON.stringify(arrayPromociones));
+    let totalPedidoPromo = JSON.parse(localStorage.arrayPromociones);
+    
+    let totalArrayFinal = totalPedidoPromo.total;
+    totalPedidoPromo.forEach(element => {
+      let templateView = `<div>
+    <p class="mb-0 title-promo">${element.promocion} ${element.total} </p>
+    <p class="mb-0">1 Pizza ${element.detalle.pizza1}</p>
+   
+    </div>`;
+    let tot = parseFloat(element.total);
+    
+    prueba += tot;
+    
+    localStorage.setItem('totalFinal', prueba);
+      containerDetail.append(templateView);
+    });
   }
   if (arrayPromoSelect.length == 2) {
     let pizza1 = arrayPromoPrincipal[0];
     let pizza2 = arrayPromoPrincipal[1];
-    let templateView = `<div>
-    <p class="mb-0 title-promo">Promoción las patriotas S/ ${precioPromoSelect} </p>
-    <p class="mb-0">1 Pizza ${pizza1.detalle} ${pizza1.tamaño}  </p>
-    <p class="mb-0">1 Pizza ${pizza2.detalle} ${pizza2.tamaño}  </p>
-  </div>`;
-    containerDetail.append(templateView);
+    let promo = localStorage.getItem('promocion');
+    arrayPromociones.push({
+      promocion: promo,
+      detalle: {
+        pizza1: pizza1.detalle + ' ' + pizza1.tamaño,
+        pizza2: pizza2.detalle + ' ' + pizza2.tamaño
+      },
+      total: precioPromoSelect
+    });
+    localStorage.setItem('arrayPromociones', JSON.stringify(arrayPromociones));
+    let totalPedidoPromo = JSON.parse(localStorage.arrayPromociones);
+    console.log(totalPedidoPromo)
+    let totalArrayFinal = totalPedidoPromo.total;
+
+    totalPedidoPromo.forEach(element => {
+      let templateView = `<div>
+    <p class="mb-0 title-promo">${element.promocion} ${element.total} </p>
+    <p class="mb-0">1 Pizza ${element.detalle.pizza1}</p>
+    <p class="mb-0">1 Pizza ${element.detalle.pizza2}</p>
+    </div>`;
+    let tot = parseFloat(element.total);
+    
+    prueba += tot;
+    console.log(prueba)
+    localStorage.setItem('totalFinal', prueba.toFixed(1));
+      containerDetail.append(templateView);
+    });
   }
-
-
+  let numberTotal =localStorage.getItem('totalFinal');
+  showTotal.text(numberTotal);
 });
 
 
@@ -487,6 +537,7 @@ let templateProducts = (element, container) => {
 // Promoción principal
 // Seleccionando cantidad
 $('#radiotipo2 input').on('change', function () {
+  countPromoFinal = JSON.parse(localStorage.arrayPromoPrincipal);
   countPromoPrincipal = $('input[name=tipo]:checked', '#radiotipo2').val();
   if (countPromoPrincipal == 1) {
     countPizzaTotal = 1;
