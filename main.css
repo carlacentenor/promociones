@@ -221,3 +221,15 @@ input[type="radio"]:checked+label::before {
   font-family: 'papafont';
   font-size: 20px
 }
+
+.btn-delete{
+  border: none;
+  background-color: transparent;
+  color: var(--darkgrey);
+  
+}
+
+.detail-promo{
+  font-size: 14px;
+  color: var(--darkgrey)
+}

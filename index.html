@@ -32,10 +32,10 @@
         <div class="row pt-2 pb-2 pl-0 pr-2 line-b">
           <div class="col-9 ">
             <p class="name-product mb-0"> Las Patriotas </p>
-            <p class="mb-0 subtitle-product">Deliciosa pizza de 8 slices desde S/40.90 </p>
+            <p class="mb-0 subtitle-product">Deliciosa pizza de 8 slices desde S/39.90 </p>
           </div>
           <div class="col-3 text-right pr-0">
-            <span id="total-count-big" class="number-span">0</span>
+            <span id="total-count-principal" class="number-span">0</span>
             <button class="btn-general ml-1 text-center" id="btn-patriotas">
               <span class="fas fa-angle-right"></span>
             </button>
@@ -47,7 +47,7 @@
             <p class="mb-0 subtitle-product">Llévate la segunda pizza a S/ 1 </p>
           </div>
           <div class="col-3 text-right pr-0">
-            <span id="total-count-family" class="number-span">0</span>
+            <span id="total-count-2da" class="number-span">0</span>
             <button class="btn-general ml-1 text-center" id="btn-segunda">
               <span class="fas fa-angle-right"></span>
             </button>
@@ -59,7 +59,7 @@
             <p class="mb-0 subtitle-product">Promoción que no te puedes perder </p>
           </div>
           <div class="col-3 text-right pr-0">
-            <span id="total-count-family" class="number-span">0</span>
+            <span id="total-count-bot" class="number-span">0</span>
             <button class="btn-general ml-1 text-center" id="btn-chicago">
               <span class="fas fa-angle-right"></span>
             </button>
@@ -155,11 +155,11 @@
           <div class="col-10"> Las Patriotas</div>
         </div>
       </div>
-      <div class="text-center p-3">
+      <div class="text-center p-3 detail-promo">
         <p class="mb-0">En el mes patrio Papa John's te trae las Patriotas!</p>
-        <p>Elige entre : The Works , La favorita de John , Americana o Vegetariana</p>
-        <p>En tamaño grande : 1 pizza a S/ 39.90 o llévate 2 a S/59.90</p>
-        <p>En tamaño familiar : 1 pizza a S/ 44.90 o llévate 2 a S/ 69.90</p>
+        <p class="mb-0">Elige entre : The Works , La favorita de John , Americana o Vegetariana</p>
+        <p class="mb-0">En tamaño grande : 1 pizza a S/ 39.90 o llévate 2 a S/59.90</p>
+        <p class="mb-0">En tamaño familiar : 1 pizza a S/ 44.90 o llévate 2 a S/ 69.90</p>
       </div>
       <div>
         <div class="border-g">
@@ -187,100 +187,9 @@
 
       </div>
     </div>
+
     <div class=" container">
       <div class="row container-promoprincipal">
-        <div class="col-6 pt-2 ">
-          <div class="mb-2">
-            <p class="mb-0 name-product text-center">Vegetariana </p>
-
-            <p class="f14 text-center">Tomates, champiñones, cebolla, pimientos, aceitunas negras y queso mozzarella</p>
-            <div class="row">
-              <div class="col-4 offset-1 text-right">
-                <button class=" decrement btn-subt" data-detail="Pizza Vegetariana Grande a S/40.90" data-name="Vegetariana" data-precio="39.90"
-                  data-type="grande" id="vegetarianagrandedecrement">
-                  <i class="fas fa-minus"></i>
-                </button>
-              </div>
-              <div class="col-2 text-center number-span" id="vegetarianagrandep">0</div>
-              <div class="col-4">
-                <button class="increment btn-subt" data-detail="Pizza Vegetariana Grande a S/ 39.90" data-name="Vegetariana" data-precio="39.90"
-                  data-type="grande" id="vegetarianagrandeaument">
-                  <i class="fas fa-plus"></i>
-                </button>
-
-              </div>
-
-            </div>
-            <div class="mt-2">
-              <img class="img-fluid" src="https://user-images.githubusercontent.com/32285482/42459652-b77b2d94-8361-11e8-9a83-1a051a610508.jpg">
-            </div>
-
-          </div>
-
-
-        </div>
-        <div class="col-6 pt-2 ">
-          <div class="mb-2">
-            <p class="mb-0 name-product text-center">Americana </p>
-
-            <p class="f14 text-center">Delicioso jamón y queso mozzarella</p>
-            <div class="row">
-              <div class="col-4 offset-1 text-right">
-                <button class=" decrement btn-subt" data-detail="Pizza Americana Grande a S/39.90" data-name="Americana" data-precio="39.90"
-                  data-type="grande" id="americanagrandedecrement">
-                  <i class="fas fa-minus"></i>
-                </button>
-              </div>
-              <div class="col-2 text-center number-span" id="americanagrandep">0</div>
-              <div class="col-4">
-                <button class="increment btn-subt" data-detail="Pizza Americana Grande a S/ 39.90" data-name="Americana" data-precio="39.90"
-                  data-type="grande" id="americanagrandeaument">
-                  <i class="fas fa-plus"></i>
-                </button>
-
-              </div>
-
-            </div>
-            <div class="mt-2">
-              <img class="img-fluid" src="https://user-images.githubusercontent.com/32285482/42459625-ab31e0dc-8361-11e8-851d-a98e9b1ae287.png">
-            </div>
-
-          </div>
-
-
-        </div>
-        <div class="col-6 pt-2 ">
-          <div class="mb-2">
-            <p class="mb-0 name-product text-center">The Works </p>
-
-            <p class="f14 text-center">Pepperoni, salchicha italiana, jamón, pimientos verdes, cebolla blanca, champiñones, aceitunas negras y queso
-              mozzarella
-            </p>
-            <div class="row">
-              <div class="col-4 offset-1 text-right">
-                <button class=" decrement btn-subt" data-detail="Pizza The Works Grande a S/39.90" data-name="The Works" data-precio="39.90"
-                  data-type="grande" id="theworksgrandedecrement">
-                  <i class="fas fa-minus"></i>
-                </button>
-              </div>
-              <div class="col-2 text-center number-span" id="theworksgrandep">0</div>
-              <div class="col-4">
-                <button class="increment btn-subt" data-detail="Pizza The Works Grande a S/ 39.90" data-name="The Works" data-precio="39.90"
-                  data-type="grande" id="theworksgrandeaument">
-                  <i class="fas fa-plus"></i>
-                </button>
-
-              </div>
-
-            </div>
-            <div class="mt-2">
-              <img class="img-fluid" src="https://user-images.githubusercontent.com/32285482/42459654-b9595fa0-8361-11e8-94d8-7f25054fa1af.jpg">
-            </div>
-
-          </div>
-
-
-        </div>
         <div class="col-6 pt-2 ">
           <div class="mb-2">
             <p class="mb-0 name-product text-center">La favorita de John </p>
@@ -311,10 +220,104 @@
 
 
         </div>
+        <div class="col-6 pt-2 ">
+          <div class="mb-2">
+            <p class="mb-0 name-product text-center">Americana </p>
+
+            <p class="f14 text-center">Delicioso jamón y abundante queso mozzarella </p>
+            <div class="row">
+              <div class="col-4 offset-1 text-right">
+                <button class=" decrement btn-subt" data-detail="Pizza Americana Grande a S/39.90" data-name="Americana" data-precio="39.90"
+                  data-type="grande" id="americanagrandedecrementp">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+              <div class="col-2 text-center number-span" id="americanagrandep">0</div>
+              <div class="col-4">
+                <button class="increment btn-subt" data-detail="Pizza Americana Grande a S/ 39.90" data-name="Americana" data-precio="39.90"
+                  data-type="grande" id="americanagrandeaumentp">
+                  <i class="fas fa-plus"></i>
+                </button>
+
+              </div>
+
+            </div>
+            <div class="mt-2">
+              <img class="img-fluid" src="https://user-images.githubusercontent.com/32285482/42459625-ab31e0dc-8361-11e8-851d-a98e9b1ae287.png">
+            </div>
+
+          </div>
+
+
+        </div>
+        <div class="col-6 pt-2 ">
+          <div class="mb-2">
+            <p class="mb-0 name-product text-center">Vegetariana </p>
+
+            <p class="f14 text-center">Tomates, champiñones, cebolla, deliciosos pimientos, aceitunas negras y abundante queso mozzarella</p>
+            <div class="row">
+              <div class="col-4 offset-1 text-right">
+                <button class=" decrement btn-subt" data-detail="Pizza Vegetariana Grande a S/40.90" data-name="Vegetariana" data-precio="39.90"
+                  data-type="grande" id="vegetarianagrandedecrementp">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+              <div class="col-2 text-center number-span" id="vegetarianagrandep">0</div>
+              <div class="col-4">
+                <button class="increment btn-subt" data-detail="Pizza Vegetariana Grande a S/ 39.90" data-name="Vegetariana" data-precio="39.90"
+                  data-type="grande" id="vegetarianagrandeaumentp">
+                  <i class="fas fa-plus"></i>
+                </button>
+
+              </div>
+
+            </div>
+            <div class="mt-2">
+              <img class="img-fluid" src="https://user-images.githubusercontent.com/32285482/42459652-b77b2d94-8361-11e8-9a83-1a051a610508.jpg">
+            </div>
+
+          </div>
+
+
+        </div>
+
+        <div class="col-6 pt-2 ">
+          <div class="mb-2">
+            <p class="mb-0 name-product text-center">The Works </p>
+
+            <p class="f14 text-center">Pepperoni, salchicha italiana, jamón, pimientos verdes, cebolla blanca, champiñones, aceitunas negras y queso
+              mozzarella
+            </p>
+            <div class="row">
+              <div class="col-4 offset-1 text-right">
+                <button class=" decrement btn-subt" data-detail="Pizza The Works Grande a S/39.90" data-name="The Works" data-precio="39.90"
+                  data-type="grande" id="theworksgrandedecrementp">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+              <div class="col-2 text-center number-span" id="theworksgrandep">0</div>
+              <div class="col-4">
+                <button class="increment btn-subt" data-detail="Pizza The Works Grande a S/ 39.90" data-name="The Works" data-precio="39.90"
+                  data-type="grande" id="theworksgrandeaumentp">
+                  <i class="fas fa-plus"></i>
+                </button>
+
+              </div>
+
+            </div>
+            <div class="mt-2">
+              <img class="img-fluid" src="https://user-images.githubusercontent.com/32285482/42459654-b9595fa0-8361-11e8-94d8-7f25054fa1af.jpg">
+            </div>
+
+          </div>
+
+
+        </div>
+
 
       </div>
       <div class="text-center">
-        <span class="text-alert-principal"></span>
+        <span class="text-alert-principal text-alert"></span>
       </div>
       <div>
 
