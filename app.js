@@ -788,7 +788,7 @@ let incrementTotal = (price, idNumberBox, name, type, detail) => {
 function validateDaysPromo (){
   let date = new Date();
   let today = date.getDay();
-  if(today == 2  ||  today == 5){
+  if(today == 2  ||  today == 4){ // 4 es jueves y 2 martes
    $('.promo2da').css('color' ,'#cfc9c7')
    $('#btn-segunda').attr('disabled', true);
    $('#btn-segunda').css('backgroundColor', '#cfc9c7');
