@@ -269,24 +269,24 @@ confirm2da.on('click', function () {
   showTotal.text(totalDelivery.toFixed(1));
 
   let totalPedidoPromoFinal = JSON.parse(localStorage.arrayPromociones);
-  arraySend=[];
+  arraySend = [];
   let namePromo;
   totalPedidoPromoFinal.forEach(element => {
-    if(element.promocion == "principal"){
+    if (element.promocion == "principal") {
       namePromo = "Las Patriotas"
     }
-    if(element.promocion == "segunda1sol"){
-      namePromo ="La 2da a 1 sol"
+    if (element.promocion == "segunda1sol") {
+      namePromo = "La 2da a 1 sol"
     }
-    let e =`Promoción ${ namePromo  } : ${element.detalle.pizza1} , ${element.detalle.pizza2}  a S/ ${element.total}` ;
+    let e = `Promoción ${ namePromo  } : ${element.detalle.pizza1} , ${element.detalle.pizza2}  a S/ ${element.total}`;
     arraySend.push(e);
-    localStorage.setItem('arraySend',JSON.stringify(arraySend));
+    localStorage.setItem('arraySend', JSON.stringify(arraySend));
   });
   let sendInfoDetailPromo = JSON.parse(localStorage.arraySend);
 
 
 
-// Guardar el input de envio por POST
+  // Guardar el input de envio por POST
 
   $('#resumen-pedido-promo2da').val(`${sendInfoDetailPromo.join("\n")  }`);
   $('#resumentotal').val(totalDelivery);
@@ -372,23 +372,23 @@ confirmPrincipal.on('click', function () {
   let totalDelivery = parseFloat(numberTotal) + 3.90
   showTotal.text(totalDelivery.toFixed(1));
   let totalPedidoPromoFinal = JSON.parse(localStorage.arrayPromociones);
-  arraySend=[];
+  arraySend = [];
   let namePromo;
   totalPedidoPromoFinal.forEach(element => {
-    if(element.promocion == "principal"){
+    if (element.promocion == "principal") {
       namePromo = "Las Patriotas"
     }
-    if(element.promocion == "segunda1sol"){
-      namePromo ="La 2da a 1 sol"
+    if (element.promocion == "segunda1sol") {
+      namePromo = "La 2da a 1 sol"
     }
-    let e =`Promoción ${ namePromo } : ${element.detalle.pizza1} , ${element.detalle.pizza2}  a S/ ${element.total}` ;
+    let e = `Promoción ${ namePromo } : ${element.detalle.pizza1} , ${element.detalle.pizza2}  a S/ ${element.total}`;
     arraySend.push(e);
-    localStorage.setItem('arraySend',JSON.stringify(arraySend));
+    localStorage.setItem('arraySend', JSON.stringify(arraySend));
   });
   let sendInfoDetailPromo = JSON.parse(localStorage.arraySend);
-// Guardar el input de envio por POST
-$('#resumen-pedido-promo2da').val(`${ sendInfoDetailPromo.join("\n")  }`);
-$('#resumentotal').val(totalDelivery);
+  // Guardar el input de envio por POST
+  $('#resumen-pedido-promo2da').val(`${ sendInfoDetailPromo.join("\n")  }`);
+  $('#resumentotal').val(totalDelivery);
 
   let countFinally = JSON.parse(localStorage.arrayPromociones);
   if (countFinally.length > 0) {
@@ -785,19 +785,20 @@ let incrementTotal = (price, idNumberBox, name, type, detail) => {
 };
 
 // VAlidaciòn de activar promociones por día
-function validateDaysPromo (){
+function validateDaysPromo() {
   let date = new Date();
   let today = date.getDay();
-  if(today == 2  ||  today == 4){ // 4 es jueves y 2 martes
-   $('.promo2da').css('color' ,'#cfc9c7')
-   $('#btn-segunda').attr('disabled', true);
-   $('#btn-segunda').css('backgroundColor', '#cfc9c7');
-   $('#total-count-2da').css('color' ,'#cfc9c7');
-  }else{
-    $('.promo2da').css('color' ,'#807673')
+  if (today == 2 || today == 4) { // 4 es jueves y 2 martes
+    $('.promo2da').css('color', '#807673')
     $('#btn-segunda').removeAttr('disabled');
     $('#btn-segunda').css('backgroundColor', '#807673');
-    $('#total-count-2da').css('color' ,'#00977');
+    $('#total-count-2da').css('color', '#00977');
+ 
+  } else {
+      $('.promo2da').css('color', '#cfc9c7')
+    $('#btn-segunda').attr('disabled', true);
+    $('#btn-segunda').css('backgroundColor', '#cfc9c7');
+    $('#total-count-2da').css('color', '#cfc9c7');
   }
 }
 
