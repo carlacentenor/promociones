@@ -41,10 +41,10 @@
             </button>
           </div>
         </div>
-        <div class="row pt-2 pb-2 pl-0 pr-2 line-b">
+        <div class="row pt-2 pb-2 pl-0 pr-2 line-b  ">
           <div class="col-9 ">
-            <p class="name-product mb-0"> La segunda pizza a S/ 1</p>
-            <p class="mb-0 subtitle-product">Llévate la segunda pizza a S/ 1 </p>
+            <p class="name-product mb-0 promo2da"> La segunda pizza a S/ 1</p>
+            <p class="mb-0 subtitle-product promo2da">Solo los Martes y Jueves </p>
           </div>
           <div class="col-3 text-right pr-0">
             <span id="total-count-2da" class="number-span">0</span>
@@ -80,10 +80,10 @@
         <span id="total">0</span>
       </div>
     </section>
+
     <form id="preferencesForm">
       <input id="resumen-pedido-promo2da" type="hidden" name="detallepedido2da">
       <input id="resumentotal" type="hidden" name="total">
-
       <input type="hidden" name="userId">
       <input type="hidden" name="blockName">
       <button type="submit" class="btn-confirm text-center p-2" id="config" disabled>Confirmar
@@ -202,7 +202,7 @@
                   <i class="fas fa-minus"></i>
                 </button>
               </div>
-              <div class="col-2 text-center number-span" id="favoritagrandep">0</div>
+              <div class="col-2 text-center number-span span-p" id="favoritagrandep">0</div>
               <div class="col-4">
                 <button class="increment btn-subt" data-detail="Pizza La favorita de John Grande a S/ 39.90" data-name="La favorita de John"
                   data-precio="39.90" data-type="grande" id="favoritagrandeaument">
@@ -232,7 +232,7 @@
                   <i class="fas fa-minus"></i>
                 </button>
               </div>
-              <div class="col-2 text-center number-span" id="americanagrandep">0</div>
+              <div class="col-2 text-center number-span span-p" id="americanagrandep">0</div>
               <div class="col-4">
                 <button class="increment btn-subt" data-detail="Pizza Americana Grande a S/ 39.90" data-name="Americana" data-precio="39.90"
                   data-type="grande" id="americanagrandeaumentp">
@@ -262,7 +262,7 @@
                   <i class="fas fa-minus"></i>
                 </button>
               </div>
-              <div class="col-2 text-center number-span" id="vegetarianagrandep">0</div>
+              <div class="col-2 text-center number-span span-p" id="vegetarianagrandep">0</div>
               <div class="col-4">
                 <button class="increment btn-subt" data-detail="Pizza Vegetariana Grande a S/ 39.90" data-name="Vegetariana" data-precio="39.90"
                   data-type="grande" id="vegetarianagrandeaumentp">

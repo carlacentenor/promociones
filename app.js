@@ -25,13 +25,21 @@ promoPrincipal.hide();
 btnSegunda.on('click', function () {
   section1.show();
   principal.hide();
-  localStorage.setItem('promocion', 'segunda1sol')
+  resetPromo2da();
+  localStorage.setItem('promocion', 'segunda1sol');
+  arrayBigPizza = [];
+  arrayFinaly = [];
+  localStorage.setItem('arrayBigPizza', arrayBigPizza);
+  localStorage.setItem('arrayFinaly', arrayFinaly);
 });
 
 btnPromoPrincipal.on('click', function () {
   promoPrincipal.show();
   principal.hide();
-  localStorage.setItem('promocion', 'principal')
+  localStorage.setItem('promocion', 'principal');
+  arrayPromoPrincipal = [];
+  localStorage.setItem('arrayPromoPrincipal', arrayPromoPrincipal);
+  resetPromoPrincipal();
 })
 
 let arrayPromociones = [];
@@ -41,7 +49,7 @@ let arrayAdicional = [];
 let arrayBebidas = [];
 let arrayFinaly = [];
 let arrayPromoPrincipal = [];
-
+let arraySend = [];
 // regresar a la ventana principal
 back.on('click', function () {
   section1.hide();
@@ -60,16 +68,7 @@ backPrincipal.on('click', function () {
 
 });
 
-// renderizando información en la web
-$.getJSON('https://api.myjson.com/bins/w94v6', function (data) {
-  let pizzaBig = data.products.pizzas.grandes;
-  let pizzaFamily = data.products.pizzas.familiares;
-  pizzaBig.forEach(element => {
-    templateProducts(element, containerBig);
-  });
 
-
-});
 
 //Eventos + / -
 $(document).on('click', '.increment', function () {
@@ -119,99 +118,7 @@ confirmPrincipal.css('backgroundColor', '#A39D9B');
 
 
 
-// Funciones de Incrementar/Decrementar Precio
-let incrementTotal = (price, idNumberBox, name, type, detail) => {
-  let promo = localStorage.getItem('promocion');
-  if (promo == "segunda1sol") {
-    let totalPedido = localStorage.getItem('totalFinal');
-    let number = $(`#${idNumberBox}`).text();
-    number = parseInt(number) + 1; // valor del número central
-    $(`#${idNumberBox}`).text(number); // mostrando valores
 
-    // almacenando data de costo total
-    arrayBigPizza.push({
-      'detalle': name,
-      'precio': price,
-      'tamaño': type
-    });
-    arrayFinaly.push({
-      'detalle': name,
-      'precio': price,
-      'tamaño': type
-    });
-    localStorage.setItem('arrayBigPizza', JSON.stringify(arrayBigPizza));
-    localStorage.setItem('arrayFinaly', JSON.stringify(arrayFinaly));
-    let countPedido = JSON.parse(localStorage.arrayFinaly);
-
-    if (countPedido.length < 2 || countPedido.length > 2) {
-      confirm2da.attr('disabled', true);
-      confirm2da.css('backgroundColor', '#A39D9B');
-      $('.text-alert').text(' * Debes elegir solo 2 pizzas');
-    } else {
-      confirm2da.removeAttr('disabled', 'disabled');
-      confirm2da.css('backgroundColor', '#009774');
-      $('.text-alert').text('');
-    }
-  }
-  if (promo == "principal") {
-    let totalPedido = localStorage.getItem('totalFinal');
-
-    let numberPrincipal = $(`#${idNumberBox}`).text();
-    numberPrincipal = parseInt(numberPrincipal) + 1; // valor del número central
-    $(`#${idNumberBox}`).text(numberPrincipal); // mostrando valores
-    arrayPromoPrincipal.push({
-      'detalle': name,
-      'tamaño': sizePizza
-    });
-    localStorage.setItem('arrayPromoPrincipal', JSON.stringify(arrayPromoPrincipal));
-    if (sizePizza == "Grande" && countPizzaTotal == 1) {
-      totalPromoPrincipal = 39.90;
-      localStorage.setItem('totalPromoPrincipal', JSON.stringify(totalPromoPrincipal));
-    } else if (sizePizza == "Familiar" && countPizzaTotal == 1) {
-      totalPromoPrincipal = 44.90;
-      localStorage.setItem('totalPromoPrincipal', JSON.stringify(totalPromoPrincipal));
-    } else if (sizePizza == "Grande" && countPizzaTotal == 2) {
-      totalPromoPrincipal = 59.90;
-      localStorage.setItem('totalPromoPrincipal', JSON.stringify(totalPromoPrincipal));
-    } else if (sizePizza == "Familiar" && countPizzaTotal == 2) {
-      totalPromoPrincipal = 69.90;
-      localStorage.setItem('totalPromoPrincipal', JSON.stringify(totalPromoPrincipal));
-    } else {
-      totalPromoPrincipal = 0;
-      localStorage.setItem('totalPromoPrincipal', JSON.stringify(totalPromoPrincipal));
-    }
-
-    let countPromoFinal = JSON.parse(localStorage.arrayPromoPrincipal);
-
-
-    if (countPizzaTotal == 2) {
-      if (countPromoFinal.length > 2 || countPromoFinal.length < 2) {
-        confirmPrincipal.attr('disabled', true);
-        confirmPrincipal.css('backgroundColor', '#A39D9B');
-        $('.text-alert-principal').text(' * Debes elegir solo 2 pizzas');
-      } else {
-        confirmPrincipal.removeAttr('disabled', 'disabled');
-        confirmPrincipal.css('backgroundColor', '#009774');
-        $('.text-alert-principal').text('');
-      }
-
-    }
-    if (countPizzaTotal == 1) {
-      if (countPromoFinal.length > 1 || countPromoFinal.length < 1) {
-        confirmPrincipal.attr('disabled', true);
-        confirmPrincipal.css('backgroundColor', '#A39D9B');
-        $('.text-alert-principal').text(' * Debes elegir solo 1 pizza');
-      } else {
-        confirmPrincipal.removeAttr('disabled', 'disabled');
-        confirmPrincipal.css('backgroundColor', '#009774');
-        $('.text-alert-principal').text('');
-      }
-
-    }
-
-  }
-
-};
 
 
 
@@ -320,26 +227,16 @@ confirm2da.on('click', function () {
 
     pizza2.precio = 1;
     totalFinal = pizza1.precio + pizza2.precio + delivery;
-    // showTotal.text(totalFinal.toFixed(1));
-    // localStorage.setItem('totalFinal', totalFinal.toFixed(1));
-
-
   }
   if (pizza1.precio < pizza2.precio) {
 
     pizza1.precio = 1;
     totalFinal = pizza2.precio + pizza1.precio + delivery;
-    // localStorage.setItem('totalFinal', totalFinal.toFixed(1));
-    // showTotal.text(totalFinal.toFixed(1));
-
   }
   if (pizza1.precio == pizza2.precio) {
 
     pizza1.precio = 1;
     totalFinal = pizza2.precio + pizza1.precio + delivery;
-    // localStorage.setItem('totalFinal', totalFinal.toFixed(1));
-    // showTotal.text(totalFinal.toFixed(1));
-
 
   }
   let promo = localStorage.getItem('promocion');
@@ -371,8 +268,29 @@ confirm2da.on('click', function () {
   let totalDelivery = parseFloat(numberTotal) + 3.90
   showTotal.text(totalDelivery.toFixed(1));
 
-  $('#resumen-pedido-promo2da').val(`1 pizza ${pizza1.detalle} ${pizza1.tamaño} S/${pizza1.precio} \n 1 pizza ${pizza2.detalle} ${pizza2.tamaño} S/ ${pizza2.precio}  `);
-  $('#resumentotal').val(totalFinal);
+  let totalPedidoPromoFinal = JSON.parse(localStorage.arrayPromociones);
+  arraySend=[];
+  let namePromo;
+  totalPedidoPromoFinal.forEach(element => {
+    if(element.promocion == "principal"){
+      namePromo = "Las Patriotas"
+    }
+    if(element.promocion == "segunda1sol"){
+      namePromo ="La 2da a 1 sol"
+    }
+    let e =`Promoción ${ namePromo  } : ${element.detalle.pizza1} , ${element.detalle.pizza2}  a S/ ${element.total}` ;
+    arraySend.push(e);
+    localStorage.setItem('arraySend',JSON.stringify(arraySend));
+  });
+  let sendInfoDetailPromo = JSON.parse(localStorage.arraySend);
+
+
+
+// Guardar el input de envio por POST
+
+  $('#resumen-pedido-promo2da').val(`${sendInfoDetailPromo.join("\n")  }`);
+  $('#resumentotal').val(totalDelivery);
+
   let countFinally = JSON.parse(localStorage.arrayPromociones);
   if (countFinally.length > 0) {
     $('#config').removeAttr('disabled');
@@ -453,6 +371,35 @@ confirmPrincipal.on('click', function () {
   let numberTotal = localStorage.getItem('totalFinal');
   let totalDelivery = parseFloat(numberTotal) + 3.90
   showTotal.text(totalDelivery.toFixed(1));
+  let totalPedidoPromoFinal = JSON.parse(localStorage.arrayPromociones);
+  arraySend=[];
+  let namePromo;
+  totalPedidoPromoFinal.forEach(element => {
+    if(element.promocion == "principal"){
+      namePromo = "Las Patriotas"
+    }
+    if(element.promocion == "segunda1sol"){
+      namePromo ="La 2da a 1 sol"
+    }
+    let e =`Promoción ${ namePromo } : ${element.detalle.pizza1} , ${element.detalle.pizza2}  a S/ ${element.total}` ;
+    arraySend.push(e);
+    localStorage.setItem('arraySend',JSON.stringify(arraySend));
+  });
+  let sendInfoDetailPromo = JSON.parse(localStorage.arraySend);
+// Guardar el input de envio por POST
+$('#resumen-pedido-promo2da').val(`${ sendInfoDetailPromo.join("\n")  }`);
+$('#resumentotal').val(totalDelivery);
+
+  let countFinally = JSON.parse(localStorage.arrayPromociones);
+  if (countFinally.length > 0) {
+    $('#config').removeAttr('disabled');
+    $('#config').css('backgroundColor', '#009774');
+  }
+  if (countFinally.length == 0) {
+
+    $('#config').attr('disabled', true);
+    $('#config').css('backgroundColor', '#A39D9B');
+  }
   countPromo();
 });
 
@@ -508,33 +455,48 @@ $('#radiotipo input').on('change', function () {
 // Promoción principal
 // Seleccionando cantidad
 $('#radiotipo2 input').on('change', function () {
-  countPromoFinal = JSON.parse(localStorage.arrayPromoPrincipal);
   countPromoPrincipal = $('input[name=tipo]:checked', '#radiotipo2').val();
   if (countPromoPrincipal == 1) {
-    countPizzaTotal = 1;
-    if (countPromoFinal.length > 1 || countPromoFinal.length < 1) {
-      confirmPrincipal.attr('disabled', true);
-      confirmPrincipal.css('backgroundColor', '#A39D9B');
-      $('.text-alert-principal').text(' * Debes elegir solo 2 pizzas');
-    } else {
-      confirmPrincipal.removeAttr('disabled', 'disabled');
-      confirmPrincipal.css('backgroundColor', '#009774');
-      $('.text-alert-principal').text('');
-    }
-
+    countPizzaTotal = 1
   }
   if (countPromoPrincipal == 2) {
-    countPizzaTotal = 2;
-    if (countPromoFinal.length > 2 || countPromoFinal.length < 2) {
-      confirmPrincipal.attr('disabled', true);
-      confirmPrincipal.css('backgroundColor', '#A39D9B');
-      $('.text-alert-principal').text(' * Debes elegir solo 2 pizzas');
-    } else {
-      confirmPrincipal.removeAttr('disabled', 'disabled');
-      confirmPrincipal.css('backgroundColor', '#009774');
-      $('.text-alert-principal').text('');
+    countPizzaTotal = 2
+  }
+  let valueCount = localStorage.arrayPromoPrincipal;
+
+  if (valueCount) {
+    if (countPromoPrincipal == 1) {
+      countPizzaTotal = 1;
+
+      countPromoFinal = JSON.parse(localStorage.arrayPromoPrincipal);
+      if (countPromoFinal.length != 1) {
+        confirmPrincipal.attr('disabled', true);
+        confirmPrincipal.css('backgroundColor', '#A39D9B');
+        $('.text-alert-principal').text(' * Debes elegir solo 1 pizza');
+      } else {
+        confirmPrincipal.removeAttr('disabled', 'disabled');
+        confirmPrincipal.css('backgroundColor', '#009774');
+        $('.text-alert-principal').text('');
+      }
     }
 
+    if (countPromoPrincipal == 2) {
+      countPizzaTotal = 2;
+      countPromoFinal = JSON.parse(localStorage.arrayPromoPrincipal);
+      if (countPromoFinal.length !== 2) {
+        confirmPrincipal.attr('disabled', true);
+        confirmPrincipal.css('backgroundColor', '#A39D9B');
+        $('.text-alert-principal').text(' * Debes elegir solo 2 pizzas');
+      } else {
+        confirmPrincipal.removeAttr('disabled', 'disabled');
+        confirmPrincipal.css('backgroundColor', '#009774');
+        $('.text-alert-principal').text('');
+      }
+
+    }
+  } else {
+    confirmPrincipal.attr('disabled', true);
+    confirmPrincipal.css('backgroundColor', '#A39D9B');
   }
 
   if (sizePizza == "Grande" && countPizzaTotal == 1) {
@@ -708,3 +670,135 @@ function countPromo() {
 }
 
 // Función que resetea los valores enviados
+function resetPromo2da() {
+  containerBig.empty();
+  $.getJSON('https://api.myjson.com/bins/w94v6', function (data) {
+    let pizzaBig = data.products.pizzas.grandes;
+    let pizzaFamily = data.products.pizzas.familiares;
+    pizzaBig.forEach(element => {
+      templateProducts(element, containerBig);
+    });
+
+  });
+
+}
+
+function resetPromoPrincipal() {
+  $('.span-p').text(0);
+  $('.decrement').removeClass('btn-active');
+  $('.increment').removeClass('btn-active');
+  confirmPrincipal.attr('disabled', true);
+  confirmPrincipal.css('backgroundColor', '#A39D9B');
+}
+
+// Funciones de Incrementar/Decrementar Precio
+let incrementTotal = (price, idNumberBox, name, type, detail) => {
+  let promo = localStorage.getItem('promocion');
+  if (promo == "segunda1sol") {
+    let totalPedido = localStorage.getItem('totalFinal');
+    let number = $(`#${idNumberBox}`).text();
+    number = parseInt(number) + 1; // valor del número central
+    $(`#${idNumberBox}`).text(number); // mostrando valores
+
+    // almacenando data de costo total
+    arrayBigPizza.push({
+      'detalle': name,
+      'precio': price,
+      'tamaño': type
+    });
+    arrayFinaly.push({
+      'detalle': name,
+      'precio': price,
+      'tamaño': type
+    });
+    localStorage.setItem('arrayBigPizza', JSON.stringify(arrayBigPizza));
+    localStorage.setItem('arrayFinaly', JSON.stringify(arrayFinaly));
+    let countPedido = JSON.parse(localStorage.arrayFinaly);
+
+    if (countPedido.length < 2 || countPedido.length > 2) {
+      confirm2da.attr('disabled', true);
+      confirm2da.css('backgroundColor', '#A39D9B');
+      $('.text-alert').text(' * Debes elegir solo 2 pizzas');
+    } else {
+      confirm2da.removeAttr('disabled', 'disabled');
+      confirm2da.css('backgroundColor', '#009774');
+      $('.text-alert').text('');
+    }
+  }
+  if (promo == "principal") {
+    let totalPedido = localStorage.getItem('totalFinal');
+
+    let numberPrincipal = $(`#${idNumberBox}`).text();
+    numberPrincipal = parseInt(numberPrincipal) + 1; // valor del número central
+    $(`#${idNumberBox}`).text(numberPrincipal); // mostrando valores
+    arrayPromoPrincipal.push({
+      'detalle': name,
+      'tamaño': sizePizza
+    });
+    localStorage.setItem('arrayPromoPrincipal', JSON.stringify(arrayPromoPrincipal));
+    if (sizePizza == "Grande" && countPizzaTotal == 1) {
+      totalPromoPrincipal = 39.90;
+      localStorage.setItem('totalPromoPrincipal', JSON.stringify(totalPromoPrincipal));
+    } else if (sizePizza == "Familiar" && countPizzaTotal == 1) {
+      totalPromoPrincipal = 44.90;
+      localStorage.setItem('totalPromoPrincipal', JSON.stringify(totalPromoPrincipal));
+    } else if (sizePizza == "Grande" && countPizzaTotal == 2) {
+      totalPromoPrincipal = 59.90;
+      localStorage.setItem('totalPromoPrincipal', JSON.stringify(totalPromoPrincipal));
+    } else if (sizePizza == "Familiar" && countPizzaTotal == 2) {
+      totalPromoPrincipal = 69.90;
+      localStorage.setItem('totalPromoPrincipal', JSON.stringify(totalPromoPrincipal));
+    } else {
+      totalPromoPrincipal = 0;
+      localStorage.setItem('totalPromoPrincipal', JSON.stringify(totalPromoPrincipal));
+    }
+
+    let countPromoFinal = JSON.parse(localStorage.arrayPromoPrincipal);
+
+    if (countPizzaTotal == 2) {
+      if (countPromoFinal.length !== 2) {
+        confirmPrincipal.attr('disabled', true);
+        confirmPrincipal.css('backgroundColor', '#A39D9B');
+        $('.text-alert-principal').text(' * Debes elegir solo 2 pizzas');
+      } else {
+        confirmPrincipal.removeAttr('disabled', 'disabled');
+        confirmPrincipal.css('backgroundColor', '#009774');
+        $('.text-alert-principal').text('');
+      }
+
+    }
+    if (countPizzaTotal == 1) {
+      if (countPromoFinal.length !== 1) {
+        confirmPrincipal.attr('disabled', true);
+        confirmPrincipal.css('backgroundColor', '#A39D9B');
+        $('.text-alert-principal').text(' * Debes elegir solo 1 pizza');
+      } else {
+        confirmPrincipal.removeAttr('disabled', 'disabled');
+        confirmPrincipal.css('backgroundColor', '#009774');
+        $('.text-alert-principal').text('');
+      }
+
+    }
+
+  }
+
+};
+
+// VAlidaciòn de activar promociones por día
+function validateDaysPromo (){
+  let date = new Date();
+  let today = date.getDay();
+  if(today == 2  ||  today == 5){
+   $('.promo2da').css('color' ,'#cfc9c7')
+   $('#btn-segunda').attr('disabled', true);
+   $('#btn-segunda').css('backgroundColor', '#cfc9c7');
+   $('#total-count-2da').css('color' ,'#cfc9c7');
+  }else{
+    $('.promo2da').css('color' ,'#807673')
+    $('#btn-segunda').removeAttr('disabled');
+    $('#btn-segunda').css('backgroundColor', '#807673');
+    $('#total-count-2da').css('color' ,'#00977');
+  }
+}
+
+validateDaysPromo();
