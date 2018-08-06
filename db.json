@@ -8,9 +8,9 @@
             "title": "americanagrande",
             "description": "Delicioso jamón y queso mozzarella",
             "precio": 40.90,
-            "type" : "grande",
-            "detail" : "Pizza Americana Grande a S/40.90",
-            "img":"https://user-images.githubusercontent.com/32285482/42459625-ab31e0dc-8361-11e8-851d-a98e9b1ae287.png"
+            "type": "grande",
+            "detail": "Pizza Americana Grande a S/40.90",
+            "img": "https://user-images.githubusercontent.com/32285482/42459625-ab31e0dc-8361-11e8-851d-a98e9b1ae287.png"
           },
           {
             "id": "2g",
@@ -19,9 +19,9 @@
             "title": "pepperonigrande",
             "description": "Pepperoni y queso mozzarella",
             "precio": 40.90,
-            "type" : "grande",
-            "detail" : "Pizza Pepperoni Grande a S/40.90",
-            "img" : "https://user-images.githubusercontent.com/32285482/42459645-b47808ce-8361-11e8-84da-09aea0c4de30.jpg"
+            "type": "grande",
+            "detail": "Pizza Pepperoni Grande a S/40.90",
+            "img": "https://user-images.githubusercontent.com/32285482/42459645-b47808ce-8361-11e8-84da-09aea0c4de30.jpg"
           },
           {
             "id": "3g",
@@ -30,9 +30,9 @@
             "title": "vegetarianagrande",
             "description": "Tomates, champiñones, cebolla, pimientos, aceitunas negras y queso mozzarella",
             "precio": 40.90,
-            "type" : "grande",
-            "detail" : "Pizza Vegetariana Grande a S/40.90",
-            "img":"https://user-images.githubusercontent.com/32285482/42459652-b77b2d94-8361-11e8-9a83-1a051a610508.jpg"
+            "type": "grande",
+            "detail": "Pizza Vegetariana Grande a S/40.90",
+            "img": "https://user-images.githubusercontent.com/32285482/42459652-b77b2d94-8361-11e8-9a83-1a051a610508.jpg"
           },
           {
             "id": "4g",
@@ -41,9 +41,9 @@
             "title": "hawaianagrande",
             "description": "Delicioso jamón, refrescante piña y riquísimo queso mozzarella extra",
             "precio": 45.90,
-            "type" : "grande",
-            "detail" : "Pizza Hawaiana Grande a S/45.90",
-            "img" : "https://user-images.githubusercontent.com/32285482/42459630-ad9755f0-8361-11e8-9c77-eddf65976de6.jpg"
+            "type": "grande",
+            "detail": "Pizza Hawaiana Grande a S/45.90",
+            "img": "https://user-images.githubusercontent.com/32285482/42459630-ad9755f0-8361-11e8-9c77-eddf65976de6.jpg"
           },
           {
             "id": "5g",
@@ -52,9 +52,9 @@
             "title": "hawaiianchickenbbqgrande",
             "description": "Deliciosa base de salsa BBQ, pollo, tocino, cebolla blanca, piña y queso mozzarella",
             "precio": 55.90,
-            "type" : "grande",
-            "detail" : "Pizza Hawaiian Chicken BBQ Grande a S/55.90",
-            "img":"https://user-images.githubusercontent.com/32285482/42459632-af46770a-8361-11e8-89df-947b3b2fc9ca.jpg"
+            "type": "grande",
+            "detail": "Pizza Hawaiian Chicken BBQ Grande a S/55.90",
+            "img": "https://user-images.githubusercontent.com/32285482/42459632-af46770a-8361-11e8-89df-947b3b2fc9ca.jpg"
           },
           {
             "id": "6g",
@@ -63,9 +63,9 @@
             "title": "allthemeatsgrande",
             "description": "Pepperoni, salchicha de cerdo, jamón, tocino, carne de res y queso mozzarella",
             "precio": 55.90,
-            "type" : "grande",
-            "detail" : "Pizza All the Meats Grande a S/55.90",
-            "img":"https://user-images.githubusercontent.com/32285482/42459639-b22056c6-8361-11e8-8c2f-032bc0ac92ac.jpg"
+            "type": "grande",
+            "detail": "Pizza All the Meats Grande a S/55.90",
+            "img": "https://user-images.githubusercontent.com/32285482/42459639-b22056c6-8361-11e8-8c2f-032bc0ac92ac.jpg"
           },
           {
             "id": "7g",
@@ -74,8 +74,8 @@
             "title": "theworksgrande",
             "description": "Pepperoni, salchicha italiana, jamón, pimientos verdes, cebolla blanca, champiñones, aceitunas negras y queso mozzarella",
             "precio": 55.90,
-            "type" : "grande",
-            "detail" : "Pizza The Works Grande a S/55.90",
+            "type": "grande",
+            "detail": "Pizza The Works Grande a S/55.90",
             "img": "https://user-images.githubusercontent.com/32285482/42459654-b9595fa0-8361-11e8-94d8-7f25054fa1af.jpg"
           }
 
@@ -87,9 +87,9 @@
             "title": "americanafamiliar",
             "description": "Delicioso jamón y queso mozzarella",
             "precio": 50.90,
-            "type" : "familiar",
-            "detail" : "Pizza Americana Familiar a S/50.90",
-            "img":"https://user-images.githubusercontent.com/32285482/42459625-ab31e0dc-8361-11e8-851d-a98e9b1ae287.png"
+            "type": "familiar",
+            "detail": "Pizza Americana Familiar a S/50.90",
+            "img": "https://user-images.githubusercontent.com/32285482/42459625-ab31e0dc-8361-11e8-851d-a98e9b1ae287.png"
           },
           {
             "id": "2f",
@@ -98,9 +98,9 @@
             "title": "pepperonifamiliar",
             "description": "pepperoni y queso mozzarella",
             "precio": 50.90,
-            "type" : "familiar",
-            "detail" : "Pizza Pepperoni Familiar a S/50.90",
-            "img" : "https://user-images.githubusercontent.com/32285482/42459645-b47808ce-8361-11e8-84da-09aea0c4de30.jpg"
+            "type": "familiar",
+            "detail": "Pizza Pepperoni Familiar a S/50.90",
+            "img": "https://user-images.githubusercontent.com/32285482/42459645-b47808ce-8361-11e8-84da-09aea0c4de30.jpg"
           },
           {
             "id": "3f",
@@ -109,9 +109,9 @@
             "title": "vegetarianafamiliar",
             "description": "Tomates, champiñones, cebolla, pimientos, aceitunas negras y queso mozzarella",
             "precio": 50.90,
-            "type" : "familiar",
-            "detail" : "Pizza Vegetariana Familiar a S/50.90",
-            "img":"https://user-images.githubusercontent.com/32285482/42459652-b77b2d94-8361-11e8-9a83-1a051a610508.jpg"
+            "type": "familiar",
+            "detail": "Pizza Vegetariana Familiar a S/50.90",
+            "img": "https://user-images.githubusercontent.com/32285482/42459652-b77b2d94-8361-11e8-9a83-1a051a610508.jpg"
           },
           {
             "id": "4f",
@@ -120,9 +120,9 @@
             "title": "hawaianafamiliar",
             "description": "Delicioso jamón, piña y  riquísimo queso mozzarella extra",
             "precio": 55.90,
-            "type" : "familiar",
-            "detail" : "Pizza Hawaiana Familiar a S/55.90",
-            "img" : "https://user-images.githubusercontent.com/32285482/42459630-ad9755f0-8361-11e8-9c77-eddf65976de6.jpg"
+            "type": "familiar",
+            "detail": "Pizza Hawaiana Familiar a S/55.90",
+            "img": "https://user-images.githubusercontent.com/32285482/42459630-ad9755f0-8361-11e8-9c77-eddf65976de6.jpg"
           },
           {
             "id": "5f",
@@ -131,9 +131,9 @@
             "title": "hawaiianchickenbbqfamiliar",
             "description": "Deliciosa base de salsa BBQ, pollo, tocino, cebolla blanca, piña y queso mozzarella",
             "precio": 65.90,
-            "type" : "familiar",
-            "detail" : "Pizza Hawaiian Chicken BBQ Familiar a S/65.90",
-            "img":"https://user-images.githubusercontent.com/32285482/42459632-af46770a-8361-11e8-89df-947b3b2fc9ca.jpg"
+            "type": "familiar",
+            "detail": "Pizza Hawaiian Chicken BBQ Familiar a S/65.90",
+            "img": "https://user-images.githubusercontent.com/32285482/42459632-af46770a-8361-11e8-89df-947b3b2fc9ca.jpg"
           },
           {
             "id": "6f",
@@ -142,9 +142,9 @@
             "title": "allthemeatsfamiliar",
             "description": "Pepperoni, salchicha de cerdo, jamón, tocino, carne de res y queso mozzarella",
             "precio": 65.90,
-            "type" : "familiar",
-            "detail" : "Pizza All the Meats Familiar a S/65.90",
-            "img":"https://user-images.githubusercontent.com/32285482/42459639-b22056c6-8361-11e8-8c2f-032bc0ac92ac.jpg"
+            "type": "familiar",
+            "detail": "Pizza All the Meats Familiar a S/65.90",
+            "img": "https://user-images.githubusercontent.com/32285482/42459639-b22056c6-8361-11e8-8c2f-032bc0ac92ac.jpg"
           },
           {
             "id": "7f",
@@ -153,35 +153,36 @@
             "title": "theworksfamiliar",
             "description": "Pepperoni, salchicha italiana, jamón, pimientos verdes, cebolla blanca, champiñones, aceitunas negras y queso mozzarella",
             "precio": 65.90,
-            "type" : "familiar",
-            "detail" : "Pizza The Works Familiar a S/65.90",
+            "type": "familiar",
+            "detail": "Pizza The Works Familiar a S/65.90",
             "img": "https://user-images.githubusercontent.com/32285482/42459654-b9595fa0-8361-11e8-94d8-7f25054fa1af.jpg"
           }
 
         ]
       },
       "adicionales": [{
-        "id": "1a",
-        "id2": "1ad",
-        "nombre": "Pepperoni Rolls",
-        "title": "pepperonirolls",
-        "description": "6 riquísimos rolls de pepperoni enrollados con nuestra masa especial",
-        "precio": 10.90,
-        "type" : "adicional",
-        "detail" : "Pepperoni rolls a S/ 10.90",
-        "img":"https://user-images.githubusercontent.com/32285482/42459646-b601f7c2-8361-11e8-8dd0-9267a4eb495d.jpg"
-      },
-      {
-        "id": "2a",
-        "id2": "2ad",
-        "nombre": "Wings",
-        "title": "wings",
-        "description": "6 alitas de pollo asadas al horno, servidas con nuestra inigualable salsa BBQ",
-        "precio": 12.90,
-        "type" : "adicional",
-        "detail" : "Wings a S/ 12.90",
-        "img": "https://user-images.githubusercontent.com/32285482/42459656-baeaea64-8361-11e8-9359-9394f6a91cd5.jpg"
-      }],
+          "id": "1a",
+          "id2": "1ad",
+          "nombre": "Pepperoni Rolls",
+          "title": "pepperonirolls",
+          "description": "6 riquísimos rolls de pepperoni enrollados con nuestra masa especial",
+          "precio": 10.90,
+          "type": "adicional",
+          "detail": "Pepperoni rolls a S/ 10.90",
+          "img": "https://user-images.githubusercontent.com/32285482/42459646-b601f7c2-8361-11e8-8dd0-9267a4eb495d.jpg"
+        },
+        {
+          "id": "2a",
+          "id2": "2ad",
+          "nombre": "Wings",
+          "title": "wings",
+          "description": "6 alitas de pollo asadas al horno, servidas con nuestra inigualable salsa BBQ",
+          "precio": 12.90,
+          "type": "adicional",
+          "detail": "Wings a S/ 12.90",
+          "img": "https://user-images.githubusercontent.com/32285482/42459656-baeaea64-8361-11e8-9359-9394f6a91cd5.jpg"
+        }
+      ],
       "bebidas": [{
           "id": "1b",
           "id2": "1bd",
@@ -189,22 +190,22 @@
           "title": "cocacolaoriginal",
           "description": "Coca Cola sabor original de 1,5L ",
           "precio": 7.90,
-          "type" : "bebida",
-          "detail" : "Coca Cola Original a S/ 7.90",
-          "img" : "https://user-images.githubusercontent.com/32285482/42459986-77d0209a-8362-11e8-96a4-eb98a46a37a7.png"
+          "type": "bebida",
+          "detail": "Coca Cola Original a S/ 7.90",
+          "img": "https://user-images.githubusercontent.com/32285482/42459986-77d0209a-8362-11e8-96a4-eb98a46a37a7.png"
         },
-                {
+        {
           "id": "3b",
           "id2": "3bd",
           "nombre": "Inca Kola Original",
           "title": "inkacolaoriginal",
           "description": "Inca Kola sabor original de 1,5L ",
           "precio": 7.90,
-          "type" : "bebida",
-          "detail" : "Inca Kola Original a S/ 7.90",
-          "img" :"https://user-images.githubusercontent.com/32285482/42459979-7532accc-8362-11e8-868e-00f4e9cdc260.png"
+          "type": "bebida",
+          "detail": "Inca Kola Original a S/ 7.90",
+          "img": "https://user-images.githubusercontent.com/32285482/42459979-7532accc-8362-11e8-868e-00f4e9cdc260.png"
         }
-    
+
 
       ]
     }

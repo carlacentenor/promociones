@@ -55,12 +55,12 @@
         </div>
         <div class="row pt-2 pb-2 pl-0 pr-2 line-b">
           <div class="col-9 ">
-            <p class="name-product mb-0">Promo Johnny Bot</p>
-            <p class="mb-0 subtitle-product">Promoción que no te puedes perder </p>
+            <p class="name-product mb-0 promobot">Promo Johnny Bot</p>
+            <p class="mb-0 subtitle-product promobot">Promoción que no te puedes perder </p>
           </div>
           <div class="col-3 text-right pr-0">
             <span id="total-count-bot" class="number-span">0</span>
-            <button class="btn-general ml-1 text-center" id="btn-chicago">
+            <button class="btn-general ml-1 text-center" id="btn-bot">
               <span class="fas fa-angle-right"></span>
             </button>
           </div>
@@ -82,10 +82,10 @@
     </section>
 
     <form id="preferencesForm">
-      <input id="resumen-pedido-promo2da" type="hidden" name="detallepedido2da">
+      <input id="resumen-pedido-promo2da" type="hidden" name="detallepedido">
       <input id="resumentotal" type="hidden" name="total">
-      <input type="hidden" name="userId">
-      <input type="hidden" name="blockName">
+      <input type="hidden" name="userId" value=userId>
+      <input type="hidden" name="blockName" value=blockName>
       <button type="submit" class="btn-confirm text-center p-2" id="config" disabled>Confirmar
 
       </button>
@@ -295,7 +295,7 @@
                   <i class="fas fa-minus"></i>
                 </button>
               </div>
-              <div class="col-2 text-center number-span" id="theworksgrandep">0</div>
+              <div class="col-2 text-center number-span span-p" id="theworksgrandep">0</div>
               <div class="col-4">
                 <button class="increment btn-subt" data-detail="Pizza The Works Grande a S/ 39.90" data-name="The Works" data-precio="39.90"
                   data-type="grande" id="theworksgrandeaumentp">

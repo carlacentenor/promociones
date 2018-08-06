@@ -6,21 +6,39 @@ const principal = $('.containerPrincipal');
 const containerBig = $('.container-bigpizza');
 const promoPrincipal = $('.promo-principal-section');
 const back = $('.back');
+const btnConfirmOrder = $('#config');
 const backPrincipal = $('.back-principal');
 const containerDetail = $('.detail-view');
 const confirm2da = $('.btn-confirm-promo2');
 const confirmPrincipal = $('.btn-confirm-promo-principal');
+const totalPromo2da = $('#total-count-family');
 let showTotal = $('#total');
 let totalPromoPrincipal;
 let totalFinal = 0;
 let prueba = 0;
-localStorage.setItem('totalFinal', totalFinal);
 let delivery = 3.90;
-const totalPromo2da = $('#total-count-family');
 let countPizzaTotal = 1;
-let sizePizza = "Grande";; // ocultando las secciones
+let sizePizza = "Grande";
+
+let arrayPromociones = [];
+let arrayBigPizza = [];
+let arrayFamilyPizza = [];
+let arrayAdicional = [];
+let arrayBebidas = [];
+let arrayFinaly = [];
+let arrayPromoPrincipal = [];
+let arraySend = [];
+
+localStorage.setItem('totalFinal', totalFinal);
+// ocultando las secciones
 section1.hide();
 promoPrincipal.hide();
+
+
+// Desactivar boton confirmar al iniciar
+desactiveButton(confirm2da);
+desactiveButton(confirmPrincipal);
+
 // Promocion segunda a 1 sol
 btnSegunda.on('click', function () {
   section1.show();
@@ -42,14 +60,6 @@ btnPromoPrincipal.on('click', function () {
   resetPromoPrincipal();
 })
 
-let arrayPromociones = [];
-let arrayBigPizza = [];
-let arrayFamilyPizza = [];
-let arrayAdicional = [];
-let arrayBebidas = [];
-let arrayFinaly = [];
-let arrayPromoPrincipal = [];
-let arraySend = [];
 // regresar a la ventana principal
 back.on('click', function () {
   section1.hide();
@@ -58,17 +68,14 @@ back.on('click', function () {
   arrayFinaly = [];
   showTotal.text(0);
   totalPromo2da.text(0);
-  $('#config').attr('disabled', true);
-  $('#config').css('backgroundColor', '#A39D9B');
+  desactiveButton(btnConfirmOrder);
 });
 
 backPrincipal.on('click', function () {
   promoPrincipal.hide();
   principal.show();
-
+  desactiveButton(btnConfirmOrder);
 });
-
-
 
 //Eventos + / -
 $(document).on('click', '.increment', function () {
@@ -80,7 +87,6 @@ $(document).on('click', '.increment', function () {
   incrementTotal(price, idNumber, namePizza, type, detail);
   let number = $(this)[0].parentElement.previousElementSibling;
   let btnDecrement = $(this)[0].parentElement.previousElementSibling.previousElementSibling.children[0].id;
-
   if ($(`#${idNumber}`).text() > 0) {
     $(`#${idNumber}`).css('color', '#009774');
     $(`#${btnDecrement}`).addClass('btn-active');
@@ -94,9 +100,7 @@ $(document).on('click', '.decrement', function () {
   let namePizza = $(this).data('name');
   let type = $(this).data('type');
   let detail = $(this).data('detail');
-
   let idNumber = $(this)[0].parentElement.nextElementSibling.id;
-
   decrementTotal(price, idNumber, namePizza, type, detail);
   let number = $(this)[0].parentElement.nextElementSibling;
   let btnDecrement = $(this)[0].parentElement.nextElementSibling.nextElementSibling.children[0].id;
@@ -105,23 +109,7 @@ $(document).on('click', '.decrement', function () {
     $(`#${btnDecrement}`).removeClass('btn-active');
     $(this).removeClass('btn-active');
   }
-
-})
-
-
-// Desactivar boton confirmar al iniciar
-
-confirm2da.attr('disabled', true);
-confirm2da.css('backgroundColor', '#A39D9B');
-confirmPrincipal.attr('disabled', true);
-confirmPrincipal.css('backgroundColor', '#A39D9B');
-
-
-
-
-
-
-
+});
 
 let decrementTotal = (price, idNumberBox, name, type, detail) => {
   let promo = localStorage.getItem('promocion');
@@ -131,36 +119,22 @@ let decrementTotal = (price, idNumberBox, name, type, detail) => {
     number = parseInt(number) - 1;
     if (number >= 0) {
       $(`#${idNumberBox}`).text(number); // mostrando valores 
-
-
       // Encontrar el valor y eliminarlo
       let countPedido = JSON.parse(localStorage.arrayFinaly);
       // encontrar el valor y borrarlo 
-      for (j = 0; j < arrayBigPizza.length; j++) {
-        if (name == arrayBigPizza[j].detalle) {
-          arrayBigPizza.splice(j, 1);
-        }
-      }
+      let arrayBigPizzaDelete = arrayBigPizza.filter(element => element.detalle !== name);
+      let arrayFinalyDelete = arrayFinaly.filter(element => element.detalle !== name);
+      localStorage.setItem('arrayBigPizza', JSON.stringify(arrayBigPizzaDelete));
+      localStorage.setItem('arrayFinaly', JSON.stringify(arrayFinalyDelete));
 
-      for (i = 0; i < arrayFinaly.length; i++) {
-        if (name == arrayFinaly[i].detalle) {
-          arrayFinaly.splice(i, 1);
-        }
-      }
-
-      localStorage.setItem('arrayBigPizza', JSON.stringify(arrayBigPizza));
-      localStorage.setItem('arrayFinaly', JSON.stringify(arrayFinaly));
       countPedido = JSON.parse(localStorage.arrayFinaly);
       if (countPedido.length < 2 || countPedido.length > 2) {
-        confirm2da.attr('disabled', true);
-        confirm2da.css('backgroundColor', '#A39D9B');
+        desactiveButton(confirm2da);
         $('.text-alert').text(' * Debes elegir solo 2 pizzas');
       } else {
-        confirm2da.removeAttr('disabled', 'disabled');
-        confirm2da.css('backgroundColor', '#009774');
+        activeButton(confirm2da);
         $('.text-alert').text('');
       }
-
     }
   }
   if (promo == "principal") {
@@ -171,72 +145,50 @@ let decrementTotal = (price, idNumberBox, name, type, detail) => {
       $(`#${idNumberBox}`).text(numberPrincipal); // mostrando valores   
       // Encontrar el valor y eliminarlo
       let countPedidoPromo = JSON.parse(localStorage.arrayPromoPrincipal);
-      for (k = 0; k < arrayPromoPrincipal.length; k++) {
-        if (name == arrayPromoPrincipal[k].detalle) {
-          arrayPromoPrincipal.splice(k, 1);
-        }
-      }
-      localStorage.setItem('arrayPromoPrincipal', JSON.stringify(arrayPromoPrincipal));
+      let arrayPrincipalDelete = arrayPromoPrincipal.filter(element => element.detalle !== name);
+      localStorage.setItem('arrayPromoPrincipal', JSON.stringify(arrayPrincipalDelete));
     }
 
     countPromoFinal = JSON.parse(localStorage.arrayPromoPrincipal);
     if (countPizzaTotal == 2) {
       if (countPromoFinal.length > 2 || countPromoFinal.length < 2) {
-        confirmPrincipal.attr('disabled', true);
-        confirmPrincipal.css('backgroundColor', '#A39D9B');
+        desactiveButton(confirmPrincipal);
         $('.text-alert-principal').text(' * Debes elegir solo 2 pizzas');
       } else {
-        confirmPrincipal.removeAttr('disabled', 'disabled');
-        confirmPrincipal.css('backgroundColor', '#009774');
+        activeButton(confirmPrincipal);
         $('.text-alert-principal').text('');
       }
 
     }
     if (countPizzaTotal == 1) {
       if (countPromoFinal.length > 1 || countPromoFinal.length < 1) {
-        confirmPrincipal.attr('disabled', true);
-        confirmPrincipal.css('backgroundColor', '#A39D9B');
+        desactiveButton(confirmPrincipal);
         $('.text-alert-principal').text(' * Debes elegir solo 1 pizza');
       } else {
-        confirmPrincipal.removeAttr('disabled', 'disabled');
-        confirmPrincipal.css('backgroundColor', '#009774');
+        activeButton(confirmPrincipal)
         $('.text-alert-principal').text('');
       }
-
     }
   }
-
-
-
 };
-
-
 
 confirm2da.on('click', function () {
   prueba = 0;
   section1.hide();
   principal.show();
   containerDetail.empty();
-
   let arrayPromoSelect = JSON.parse(localStorage.arrayFinaly);
-
   let pizza1 = arrayPromoSelect[0];
   let pizza2 = arrayPromoSelect[1];
 
   if (pizza1.precio > pizza2.precio) {
-
     pizza2.precio = 1;
-    totalFinal = pizza1.precio + pizza2.precio + delivery;
   }
   if (pizza1.precio < pizza2.precio) {
-
     pizza1.precio = 1;
-    totalFinal = pizza2.precio + pizza1.precio + delivery;
   }
   if (pizza1.precio == pizza2.precio) {
-
     pizza1.precio = 1;
-    totalFinal = pizza2.precio + pizza1.precio + delivery;
 
   }
   let promo = localStorage.getItem('promocion');
@@ -249,25 +201,17 @@ confirm2da.on('click', function () {
     total: pizza1.precio + pizza2.precio
   });
 
-
   localStorage.setItem('arrayPromociones', JSON.stringify(arrayPromociones));
   let totalPedidoPromo = JSON.parse(localStorage.arrayPromociones);
   totalPromo2da.text(totalPedidoPromo.length);
   totalPedidoPromo.forEach((element, index) => {
     templatePromoDetail(element, index);
     let tot = parseFloat(element.total);
-
     prueba += tot;
-
     localStorage.setItem('totalFinal', prueba);
-
   });
 
-
-  let numberTotal = localStorage.getItem('totalFinal');
-  let totalDelivery = parseFloat(numberTotal) + 3.90
-  showTotal.text(totalDelivery.toFixed(1));
-
+  showTotal.text(totalOrderDelivery());
   let totalPedidoPromoFinal = JSON.parse(localStorage.arrayPromociones);
   arraySend = [];
   let namePromo;
@@ -283,30 +227,20 @@ confirm2da.on('click', function () {
     localStorage.setItem('arraySend', JSON.stringify(arraySend));
   });
   let sendInfoDetailPromo = JSON.parse(localStorage.arraySend);
-
-
-
   // Guardar el input de envio por POST
-
   $('#resumen-pedido-promo2da').val(`${sendInfoDetailPromo.join("\n")  }`);
-  $('#resumentotal').val(totalDelivery);
-
+  $('#resumentotal').val(totalOrderDelivery());
   let countFinally = JSON.parse(localStorage.arrayPromociones);
   if (countFinally.length > 0) {
-    $('#config').removeAttr('disabled');
-    $('#config').css('backgroundColor', '#009774');
+    activeButton(btnConfirmOrder);
   }
   if (countFinally.length == 0) {
-
-    $('#config').attr('disabled', true);
-    $('#config').css('backgroundColor', '#A39D9B');
+    desactiveButton(btnConfirmOrder);
   }
   countPromo();
 });
 
-
 // Confirmar Promo Principal
-
 confirmPrincipal.on('click', function () {
   promoPrincipal.hide();
   principal.show();
@@ -315,8 +249,6 @@ confirmPrincipal.on('click', function () {
   let arrayPromoSelect = JSON.parse(localStorage.arrayPromoPrincipal);
   let precioPromoSelect = localStorage.totalPromoPrincipal;
   let convertPrice = parseFloat(precioPromoSelect);
-
-
   // showTotal.text(final.toFixed(1));
   if (arrayPromoSelect.length == 1) {
     let pizza1 = arrayPromoPrincipal[0];
@@ -331,17 +263,12 @@ confirmPrincipal.on('click', function () {
     });
     localStorage.setItem('arrayPromociones', JSON.stringify(arrayPromociones));
     let totalPedidoPromo = JSON.parse(localStorage.arrayPromociones);
-
     let totalArrayFinal = totalPedidoPromo.total;
-
     totalPedidoPromo.forEach((element, index) => {
       templatePromoDetail(element, index);
       let tot = parseFloat(element.total);
-
       prueba += tot;
-
       localStorage.setItem('totalFinal', prueba);
-      //containerDetail.append(templateView);
     });
   }
   if (arrayPromoSelect.length == 2) {
@@ -361,16 +288,12 @@ confirmPrincipal.on('click', function () {
     totalPedidoPromo.forEach((element, index) => {
       templatePromoDetail(element, index);
       let tot = parseFloat(element.total);
-
       prueba += tot;
-
       localStorage.setItem('totalFinal', prueba.toFixed(1));
       // containerDetail.append(templateView);
     });
   }
-  let numberTotal = localStorage.getItem('totalFinal');
-  let totalDelivery = parseFloat(numberTotal) + 3.90
-  showTotal.text(totalDelivery.toFixed(1));
+  showTotal.text(totalOrderDelivery());
   let totalPedidoPromoFinal = JSON.parse(localStorage.arrayPromociones);
   arraySend = [];
   let namePromo;
@@ -388,24 +311,17 @@ confirmPrincipal.on('click', function () {
   let sendInfoDetailPromo = JSON.parse(localStorage.arraySend);
   // Guardar el input de envio por POST
   $('#resumen-pedido-promo2da').val(`${ sendInfoDetailPromo.join("\n")  }`);
-  $('#resumentotal').val(totalDelivery);
+  $('#resumentotal').val(totalOrderDelivery());
 
   let countFinally = JSON.parse(localStorage.arrayPromociones);
   if (countFinally.length > 0) {
-    $('#config').removeAttr('disabled');
-    $('#config').css('backgroundColor', '#009774');
+    activeButton(btnConfirmOrder);
   }
   if (countFinally.length == 0) {
-
-    $('#config').attr('disabled', true);
-    $('#config').css('backgroundColor', '#A39D9B');
+    desactiveButton(btnConfirmOrder);
   }
   countPromo();
 });
-
-
-
-
 // Valor de radio button Pizza Grande y Familiar
 
 $('#radiotipo input').on('change', function () {
@@ -413,41 +329,32 @@ $('#radiotipo input').on('change', function () {
   if (typeHome == 'Grande') {
     arrayBigPizza = [];
     arrayFinaly = [];
-    arrayPromociones = [];
     localStorage.setItem('arrayBigPizza', JSON.stringify(arrayBigPizza));
     localStorage.setItem('arrayFinaly', JSON.stringify(arrayFinaly));
-    localStorage.setItem('arrayPromociones', JSON.stringify(arrayPromociones));
+    // localStorage.setItem('arrayPromociones', JSON.stringify(arrayPromociones));
     containerBig.empty();
     $.getJSON('https://api.myjson.com/bins/w94v6', function (data) {
       let pizzaBig = data.products.pizzas.grandes;
       pizzaBig.forEach(element => {
         templateProducts(element, containerBig);
       });
-
-
     });
-
-    confirm2da.attr('disabled', true);
-    confirm2da.css('backgroundColor', '#A39D9B');
+    desactiveButton(confirm2da);
   }
   if (typeHome == 'Familiar') {
     arrayBigPizza = [];
     arrayFinaly = [];
-    arrayPromociones = [];
     localStorage.setItem('arrayBigPizza', JSON.stringify(arrayBigPizza));
     localStorage.setItem('arrayFinaly', JSON.stringify(arrayFinaly));
-    localStorage.setItem('arrayPromociones', JSON.stringify(arrayPromociones));
+    // localStorage.setItem('arrayPromociones', JSON.stringify(arrayPromociones));
     containerBig.empty();
     $.getJSON('https://api.myjson.com/bins/w94v6', function (data) {
       let pizzaFamily = data.products.pizzas.familiares;
       pizzaFamily.forEach(element => {
         templateProducts(element, containerBig);
       });
-
-
     });
-    confirm2da.attr('disabled', true);
-    confirm2da.css('backgroundColor', '#A39D9B');
+    desactiveButton(confirm2da);
   }
 });
 
@@ -463,19 +370,15 @@ $('#radiotipo2 input').on('change', function () {
     countPizzaTotal = 2
   }
   let valueCount = localStorage.arrayPromoPrincipal;
-
   if (valueCount) {
     if (countPromoPrincipal == 1) {
       countPizzaTotal = 1;
-
       countPromoFinal = JSON.parse(localStorage.arrayPromoPrincipal);
       if (countPromoFinal.length != 1) {
-        confirmPrincipal.attr('disabled', true);
-        confirmPrincipal.css('backgroundColor', '#A39D9B');
+        desactiveButton(confirmPrincipal);
         $('.text-alert-principal').text(' * Debes elegir solo 1 pizza');
       } else {
-        confirmPrincipal.removeAttr('disabled', 'disabled');
-        confirmPrincipal.css('backgroundColor', '#009774');
+        activeButton(confirmPrincipal);
         $('.text-alert-principal').text('');
       }
     }
@@ -484,37 +387,20 @@ $('#radiotipo2 input').on('change', function () {
       countPizzaTotal = 2;
       countPromoFinal = JSON.parse(localStorage.arrayPromoPrincipal);
       if (countPromoFinal.length !== 2) {
-        confirmPrincipal.attr('disabled', true);
-        confirmPrincipal.css('backgroundColor', '#A39D9B');
+        desactiveButton(confirmPrincipal);
         $('.text-alert-principal').text(' * Debes elegir solo 2 pizzas');
       } else {
-        confirmPrincipal.removeAttr('disabled', 'disabled');
-        confirmPrincipal.css('backgroundColor', '#009774');
+        activeButton(confirmPrincipal);
         $('.text-alert-principal').text('');
       }
 
     }
   } else {
-    confirmPrincipal.attr('disabled', true);
-    confirmPrincipal.css('backgroundColor', '#A39D9B');
+    desactiveButton(confirmPrincipal);
   }
 
-  if (sizePizza == "Grande" && countPizzaTotal == 1) {
-    totalPromoPrincipal = 39.90;
-    localStorage.setItem('totalPromoPrincipal', JSON.stringify(totalPromoPrincipal));
-  } else if (sizePizza == "Familiar" && countPizzaTotal == 1) {
-    totalPromoPrincipal = 44.90;
-    localStorage.setItem('totalPromoPrincipal', JSON.stringify(totalPromoPrincipal));
-  } else if (sizePizza == "Grande" && countPizzaTotal == 2) {
-    totalPromoPrincipal = 59.90;
-    localStorage.setItem('totalPromoPrincipal', JSON.stringify(totalPromoPrincipal));
-  } else if (sizePizza == "Familiar" && countPizzaTotal == 2) {
-    totalPromoPrincipal = 69.90;
-    localStorage.setItem('totalPromoPrincipal', JSON.stringify(totalPromoPrincipal));
-  } else {
-    totalPromoPrincipal = 0;
-    localStorage.setItem('totalPromoPrincipal', JSON.stringify(totalPromoPrincipal));
-  }
+  let totalPricePromoPrincipal = validationPricePromoPrincipal(sizePizza, countPizzaTotal);
+  localStorage.setItem('totalPromoPrincipal', JSON.stringify(totalPricePromoPrincipal));
 
 });
 // Seleccionando Tamaño
@@ -526,59 +412,47 @@ $('#radiotipo3 input').on('change', function () {
   if (sizePizza == "Familiar") {
     sizePizza = "Familiar"
   }
-  if (sizePizza == "Grande" && countPizzaTotal == 1) {
-    totalPromoPrincipal = 39.90;
-    localStorage.setItem('totalPromoPrincipal', JSON.stringify(totalPromoPrincipal));
-  } else if (sizePizza == "Familiar" && countPizzaTotal == 1) {
-    totalPromoPrincipal = 44.90;
-    localStorage.setItem('totalPromoPrincipal', JSON.stringify(totalPromoPrincipal));
-  } else if (sizePizza == "Grande" && countPizzaTotal == 2) {
-    totalPromoPrincipal = 59.90;
-    localStorage.setItem('totalPromoPrincipal', JSON.stringify(totalPromoPrincipal));
-  } else if (sizePizza == "Familiar" && countPizzaTotal == 2) {
-    totalPromoPrincipal = 69.90;
-    localStorage.setItem('totalPromoPrincipal', JSON.stringify(totalPromoPrincipal));
-  } else {
-    totalPromoPrincipal = 0;
-    localStorage.setItem('totalPromoPrincipal', JSON.stringify(totalPromoPrincipal));
-  }
+  let totalPricePromoPrincipal = validationPricePromoPrincipal(sizePizza, countPizzaTotal);
+  localStorage.setItem('totalPromoPrincipal', JSON.stringify(totalPricePromoPrincipal));
 });
 
+// Borrando items del detalle de pedido
 $(document).on('click', '.btn-delete', function () {
   containerDetail.empty();
   let id = $(this)[0].id;
+  let arrayLocalPromociones = arrayPromociones;
   let arrayFinal = JSON.parse(localStorage.arrayPromociones);
-  for (j = 0; j < arrayFinal.length; j++) {
-    if (id == j) {
-      arrayFinal.splice(j, 1);
-    }
-  };
+  let arraySendDelete = JSON.parse(localStorage.arraySend);
+
+  deleteArrayIndex(arrayFinal, id);
+  deleteArrayIndex(arraySendDelete, id);
+  deleteArrayIndex(arrayLocalPromociones, id);
 
   localStorage.setItem('arrayPromociones', JSON.stringify(arrayFinal));
+  localStorage.setItem('arraySend', JSON.stringify(arraySendDelete));
+
   let totalPedidoPromo = JSON.parse(localStorage.arrayPromociones);
+  let totalSend = JSON.parse(localStorage.arraySend);
+
+  $('#resumen-pedido-promo2da').val(`${ totalSend.join("\n")  }`);
   let prueba = 0;
   totalPedidoPromo.forEach((element, index) => {
     templatePromoDetail(element, index);
-
     let tot = parseFloat(element.total);
-
     prueba += tot;
-    console.log(prueba)
     localStorage.setItem('totalFinal', prueba);
 
   });
-  if (totalPedidoPromo.length == 0) {
-    showTotal.text(0);
-  } else {
-    let numberTotal = localStorage.getItem('totalFinal');
-    let totalDelivery = parseFloat(numberTotal) + 3.90
-    showTotal.text(totalDelivery.toFixed(1));
-  }
   countPromo();
 
+  if (totalPedidoPromo.length == 0) {
+    showTotal.text(0);
+    desactiveButton(btnConfirmOrder)
+  } else {
+
+    showTotal.text(totalOrderDelivery());
+  }
 });
-
-
 
 function templatePromoDetail(element, index) {
   let namePromo;
@@ -611,31 +485,26 @@ function templatePromoDetail(element, index) {
     </div>`;
     containerDetail.append(templateView);
   }
-
 }
 
 // Función que inserta los valores con el estilo determinado
 let templateProducts = (element, container) => {
-  let template = ` <div class="col-6 pt-2 ">
+  let template = `<div class="col-6 pt-2 ">
   <div class="mb-2">
     <p class="mb-0 name-product text-center">${element.nombre}  </p>
     <p class="text-center mb-0 name-product">S/ ${element.precio}0</p>
     <p class="f14 text-center">${element.description}</p>
     <div class="row">
-    <div class="col-4 offset-1 text-right">
-    <button class=" decrement btn-subt" data-detail="${element.detail}"  data-name="${element.nombre}" data-precio=${element.precio} data-type=${element.type} id="${element.title}decrement" ><i class="fas fa-minus"></i></button>
-  </div>
-  <div class="col-2 text-center number-span" id=${element.title} >0</div>
-  <div class="col-4"><button class="increment btn-subt" data-detail="${element.detail}" data-name="${element.nombre}" data-precio=${element.precio} data-type=${element.type} id="${element.title}aument" ><i class="fas fa-plus"></i></button>
-  
-    </div>
-   
-  </div> 
+      <div class="col-4 offset-1 text-right">
+        <button class=" decrement btn-subt" data-detail="${element.detail}"  data-name="${element.nombre}" data-precio=${element.precio} data-type=${element.type} id="${element.title}decrement" ><i class="fas fa-minus"></i></button>
+      </div>
+      <div class="col-2 text-center number-span" id=${element.title} >0</div>
+      <div class="col-4">
+        <button class="increment btn-subt" data-detail="${element.detail}" data-name="${element.nombre}" data-precio=${element.precio} data-type=${element.type} id="${element.title}aument"><i class="fas fa-plus"></i></button>
+      </div>
+    </div> 
     <div class="mt-2"><img class="img-fluid" src="${element.img}" ></div>
-    
-  </div>
-  
-  
+  </div>  
 </div>`;
   container.append(template);
 }
@@ -662,11 +531,13 @@ function countPromo() {
       if (element.promocion == "segunda1sol" && totalPedidoPromo.length == 1) {
         $('#total-count-principal').text(0)
       }
+
     });
   } else {
     $('#total-count-2da').text(0);
     $('#total-count-principal').text(0)
   }
+
 }
 
 // Función que resetea los valores enviados
@@ -678,17 +549,7 @@ function resetPromo2da() {
     pizzaBig.forEach(element => {
       templateProducts(element, containerBig);
     });
-
   });
-
-}
-
-function resetPromoPrincipal() {
-  $('.span-p').text(0);
-  $('.decrement').removeClass('btn-active');
-  $('.increment').removeClass('btn-active');
-  confirmPrincipal.attr('disabled', true);
-  confirmPrincipal.css('backgroundColor', '#A39D9B');
 }
 
 // Funciones de Incrementar/Decrementar Precio
@@ -716,18 +577,15 @@ let incrementTotal = (price, idNumberBox, name, type, detail) => {
     let countPedido = JSON.parse(localStorage.arrayFinaly);
 
     if (countPedido.length < 2 || countPedido.length > 2) {
-      confirm2da.attr('disabled', true);
-      confirm2da.css('backgroundColor', '#A39D9B');
+      desactiveButton(confirm2da);
       $('.text-alert').text(' * Debes elegir solo 2 pizzas');
     } else {
-      confirm2da.removeAttr('disabled', 'disabled');
-      confirm2da.css('backgroundColor', '#009774');
+      activeButton(confirm2da);
       $('.text-alert').text('');
     }
   }
   if (promo == "principal") {
     let totalPedido = localStorage.getItem('totalFinal');
-
     let numberPrincipal = $(`#${idNumberBox}`).text();
     numberPrincipal = parseInt(numberPrincipal) + 1; // valor del número central
     $(`#${idNumberBox}`).text(numberPrincipal); // mostrando valores
@@ -736,52 +594,30 @@ let incrementTotal = (price, idNumberBox, name, type, detail) => {
       'tamaño': sizePizza
     });
     localStorage.setItem('arrayPromoPrincipal', JSON.stringify(arrayPromoPrincipal));
-    if (sizePizza == "Grande" && countPizzaTotal == 1) {
-      totalPromoPrincipal = 39.90;
-      localStorage.setItem('totalPromoPrincipal', JSON.stringify(totalPromoPrincipal));
-    } else if (sizePizza == "Familiar" && countPizzaTotal == 1) {
-      totalPromoPrincipal = 44.90;
-      localStorage.setItem('totalPromoPrincipal', JSON.stringify(totalPromoPrincipal));
-    } else if (sizePizza == "Grande" && countPizzaTotal == 2) {
-      totalPromoPrincipal = 59.90;
-      localStorage.setItem('totalPromoPrincipal', JSON.stringify(totalPromoPrincipal));
-    } else if (sizePizza == "Familiar" && countPizzaTotal == 2) {
-      totalPromoPrincipal = 69.90;
-      localStorage.setItem('totalPromoPrincipal', JSON.stringify(totalPromoPrincipal));
-    } else {
-      totalPromoPrincipal = 0;
-      localStorage.setItem('totalPromoPrincipal', JSON.stringify(totalPromoPrincipal));
-    }
+
+    let totalPricePromoPrincipal = validationPricePromoPrincipal(sizePizza, countPizzaTotal);
+    localStorage.setItem('totalPromoPrincipal', JSON.stringify(totalPricePromoPrincipal));
 
     let countPromoFinal = JSON.parse(localStorage.arrayPromoPrincipal);
-
     if (countPizzaTotal == 2) {
       if (countPromoFinal.length !== 2) {
-        confirmPrincipal.attr('disabled', true);
-        confirmPrincipal.css('backgroundColor', '#A39D9B');
+        desactiveButton(confirmPrincipal);
         $('.text-alert-principal').text(' * Debes elegir solo 2 pizzas');
       } else {
-        confirmPrincipal.removeAttr('disabled', 'disabled');
-        confirmPrincipal.css('backgroundColor', '#009774');
+        activeButton(confirmPrincipal);
         $('.text-alert-principal').text('');
       }
-
     }
     if (countPizzaTotal == 1) {
       if (countPromoFinal.length !== 1) {
-        confirmPrincipal.attr('disabled', true);
-        confirmPrincipal.css('backgroundColor', '#A39D9B');
+        desactiveButton(confirmPrincipal);
         $('.text-alert-principal').text(' * Debes elegir solo 1 pizza');
       } else {
-        confirmPrincipal.removeAttr('disabled', 'disabled');
-        confirmPrincipal.css('backgroundColor', '#009774');
+        activeButton(confirmPrincipal);
         $('.text-alert-principal').text('');
       }
-
     }
-
   }
-
 };
 
 // VAlidaciòn de activar promociones por día
@@ -793,13 +629,70 @@ function validateDaysPromo() {
     $('#btn-segunda').removeAttr('disabled');
     $('#btn-segunda').css('backgroundColor', '#807673');
     $('#total-count-2da').css('color', '#00977');
- 
+
   } else {
-      $('.promo2da').css('color', '#cfc9c7')
+    $('.promo2da').css('color', '#cfc9c7')
     $('#btn-segunda').attr('disabled', true);
     $('#btn-segunda').css('backgroundColor', '#cfc9c7');
     $('#total-count-2da').css('color', '#cfc9c7');
   }
 }
 
+// Funciones reutilizables
+
+function inactivePromo() {
+  $('.promobot').css('color', '#cfc9c7')
+  $('#btn-bot').attr('disabled', true);
+  $('#btn-bot').css('backgroundColor', '#cfc9c7');
+  $('#total-count-bot').css('color', '#cfc9c7');
+}
+
+function desactiveButton(element) {
+  element.attr('disabled', true);
+  element.css('backgroundColor', '#A39D9B');
+}
+
+function activeButton(element) {
+  element.removeAttr('disabled');
+  element.css('backgroundColor', '#009774');
+}
+
+function resetPromoPrincipal() {
+  $('.span-p').text(0);
+  $('.decrement').removeClass('btn-active');
+  $('.increment').removeClass('btn-active');
+  desactiveButton(confirmPrincipal);
+}
+
+function deleteArrayIndex(array, id) {
+  for (p = 0; p < array.length; p++) {
+    if (id == p) {
+      array.splice(p, 1);
+    }
+  };
+}
+
+function validationPricePromoPrincipal(sizePizza, countPizzaTotal) {
+  let totalPromoPrincipal = 0;
+  if (sizePizza == "Grande" && countPizzaTotal == 1) {
+    totalPromoPrincipal = 39.90;
+  } else if (sizePizza == "Familiar" && countPizzaTotal == 1) {
+    totalPromoPrincipal = 44.90;
+  } else if (sizePizza == "Grande" && countPizzaTotal == 2) {
+    totalPromoPrincipal = 59.90;
+  } else if (sizePizza == "Familiar" && countPizzaTotal == 2) {
+    totalPromoPrincipal = 69.90;
+  } else {
+    totalPromoPrincipal = 0;
+  }
+  return totalPromoPrincipal;
+}
+
+function totalOrderDelivery() {
+  let numberTotal = localStorage.getItem('totalFinal');
+  let totalDelivery = parseFloat(numberTotal) + 3.90;
+  return totalDelivery.toFixed(1);
+}
+
+inactivePromo();
 validateDaysPromo();
