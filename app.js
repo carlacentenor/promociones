@@ -219,7 +219,7 @@ confirm2da.on('click', function () {
   let namePromo;
   totalPedidoPromoFinal.forEach(element => {
     if (element.promocion == "principal") {
-      namePromo = "Las Patriotas"
+      namePromo = "La Favorita + tu favorita"
     }
     if (element.promocion == "segunda1sol") {
       namePromo = "La 2da a 1 sol"
@@ -301,7 +301,7 @@ confirmPrincipal.on('click', function () {
   let namePromo;
   totalPedidoPromoFinal.forEach(element => {
     if (element.promocion == "principal") {
-      namePromo = "Las Patriotas"
+      namePromo = "La favorita + tu favorita"
     }
     if (element.promocion == "segunda1sol") {
       namePromo = "La 2da a 1 sol"
@@ -524,7 +524,7 @@ $(document).on('click', '.btn-delete', function () {
 function templatePromoDetail(element, index) {
   let namePromo;
   if (element.promocion == "principal") {
-    namePromo = "Las Patriotas"
+    namePromo = "La favorita"
   }
   if (element.promocion == "segunda1sol") {
     namePromo = "La Segunda a 1 sol "
