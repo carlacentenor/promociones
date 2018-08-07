@@ -117,9 +117,9 @@
           <div>
             <form id=radiotipo class=" text-center">
               <input type="radio" name="tipo" value="Grande" checked id="rb1" />
-              <label for="rb1">Grande (8 slices) </label>
-              <input type="radio" name="tipo" value="Familiar" id="rb2" />
-              <label for="rb2">Familiar (10 slices)</label>
+              <label for="rb1"  class="pizza-count">Grande (8 slices) </label>
+              <input type="radio"  name="tipo" value="Familiar" id="rb2" />
+              <label for="rb2"  class="pizza-count">Familiar (10 slices)</label>
             </form>
           </div>
         </div>
@@ -138,8 +138,193 @@
     </div>
   </section>
 
-  <!-- Patriotas -->
+
+  <!-- Promo principal La Favorita -->
   <section class="promo-principal-section">
+    <div class="container">
+      <div class="mt-2 mb-2">
+        <a class="back-principal">
+          <span>
+            <</span> Volver</a>
+      </div>
+      <div class="title-section p-2">
+        <div class="row">
+          <div class="col-2">
+            <img class="img-icon" src="https://user-images.githubusercontent.com/32285482/42764450-426034d0-88db-11e8-83c1-30a752f4d596.png"
+              alt="">
+          </div>
+          <div class="col-10  pl-1"> La Favorita + tu favorita</div>
+        </div>
+      </div>
+      <div class="text-center p-3 detail-promo">
+        <p class="mb-0">Llévate 1 pizza la Favorita de John en tamaño grande a S/ 39.90 o en tamaño familiar S/ 44.90</p>
+        <p class="mb-0">o llévate la Favorita de John + tu favorita en tamaño grande a S/ 59.90 y en tamaño familiar a S/ 69.90 </p>
+      </div>
+      <div>
+        <div class="border-g">
+          <div class="">
+            <p class="name-product pl-3 pt-2 mb-0">Elige la cantidad de pizzas :</p>
+            <div>
+              <form id=radiotipo5 class=" text-center">
+                <input type="radio" name="tipo" value="1" checked="checked" id="rb1count" />
+                <label for="rb1count" class="pizza-count">1 pizza</label>
+                <input type="radio" name="tipo" value="2" id="rb2promocount" />
+                <label for="rb2promocount" class="pizza-count">2 pizzas</label>
+              </form>
+            </div>
+          </div>
+          <p class="name-product pl-3 pt-2 mb-0">Elige el Tamaño :</p>
+          <div>
+            <form id=radiotipo6 class=" text-center">
+              <input type="radio" name="tipo" value="Grande" checked="checked" id="rb1size" />
+              <label for="rb1size" class="pizza-count">Grande (8 slices) </label>
+              <input type="radio" name="tipo" value="Familiar" id="rb2size" />
+              <label for="rb2size" class="pizza-count">Familiar (10 slices)</label>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="text-center">
+      <p class="name-product mb-0 mt-3" id="title-favorite-selection">tu pizza</p>
+    </div>
+    <div class=" container">
+      <div class="container">
+        <div class="row border-r p-2">
+          <div class="col-6">
+            <p class="mb-0 name-product-principal text-center">La favorita de John </p>
+            <p class="f14 text-center mb-1">6 tipo de quesos, salchicha, pepperoni y especias italianas</p>
+          </div>
+          <div class="col-6 m-auto pl-2 pr-2">
+            <img class="img-fluid" src="https://user-images.githubusercontent.com/32285482/43146116-1d1a89ea-8f26-11e8-8c6e-877c80db028d.jpg">
+          </div>
+
+
+        </div>
+      </div>
+
+      <div class="container" id="box-pizza-favorite">
+        <div class="text-center">
+          <p class="name-product-principal mb-0 mt-3" >elige la segunda : tu favorita</p>
+        </div>
+
+        <form id=radiotipo4 class=" text-center">
+          <input type="radio" name="tipo" value="Americana" id="rbamericana" class="text-right" />
+          <label class="pizza-box-radio" for="rbamericana">
+            <div class="row border-b border-preview p-1" id="border-1-americana">
+              <div class="col-6 m-auto pl-2 pt-2 pb-2 pr-0">
+                <img class="img-fluid" src="https://user-images.githubusercontent.com/32285482/42459625-ab31e0dc-8361-11e8-851d-a98e9b1ae287.png">
+              </div>
+              <div class="col-6 m-auto">
+                <p class="mb-0 name-product-principal text-center">Americana </p>
+                <p class="f14 text-center mb-0">Delicioso jamón y abundante queso mozzarella</p>
+              </div>
+
+            </div>
+          </label>
+          <input type="radio" name="tipo" value="Pepperoni" id="rbpepperoni" class="text-right" />
+          <label class="pizza-box-radio" for="rbpepperoni">
+            <div class="row border-b border-preview p-1 " id="border-1-pepperoni">
+              <div class="col-6 m-auto pl-2 pt-2 pb-2 pr-0">
+                <img class="img-fluid" src="https://user-images.githubusercontent.com/32285482/42459645-b47808ce-8361-11e8-84da-09aea0c4de30.jpg">
+              </div>
+              <div class="col-6 m-auto">
+                <p class="mb-0 name-product-principal text-center">Pepperoni</p>
+                <p class="f14 text-center mb-0">Delicioso Pepperoni y queso mozzarella</p>
+              </div>
+
+            </div>
+          </label>
+          <input type="radio" name="tipo" value="Vegetariana" id="rbvegetariana" class="text-right" />
+          <label class="pizza-box-radio" for="rbvegetariana">
+            <div class="row border-b border-preview p-1" id="border-1-vegetariana">
+              <div class="col-6 m-auto pl-2 pt-2 pb-2 pr-0">
+                <img class="img-fluid" src="https://user-images.githubusercontent.com/32285482/42459652-b77b2d94-8361-11e8-9a83-1a051a610508.jpg">
+              </div>
+              <div class="col-6 m-auto">
+                <p class="mb-0 name-product-principal text-center">Vegetariana </p>
+                <p class="f14 text-center mb-0">Tomates, champiñones, cebolla, pimientos, aceitunas negras y queso mozzarella</p>
+               
+              </div>
+
+            </div>
+          </label>
+          <input type="radio" name="tipo" value="Hawaiana" id="rbhawaiana" class="text-right" />
+          <label class="pizza-box-radio" for="rbhawaiana">
+            <div class="row border-b border-preview p-1 " id="border-1-hawaiana">
+              <div class="col-6 m-auto pl-2 pt-2 pb-2 pr-0">
+                <img class="img-fluid" src="https://user-images.githubusercontent.com/32285482/42459630-ad9755f0-8361-11e8-9c77-eddf65976de6.jpg">
+              </div>
+              <div class="col-6 m-auto">
+                <p class="mb-0 name-product-principal text-center">Hawaiana </p>
+                <p class="f14 text-center mb-0">Delicioso jamón, refrescante piña y riquísimo queso mozzarella extra</p>
+               
+              </div>
+
+            </div>
+          </label>
+          <input type="radio" name="tipo" value="Hawaiian Chicken BBQ" id="rbhawaiian" class="text-right" />
+          <label class="pizza-box-radio" for="rbhawaiian">
+            <div class="row border-b border-preview p-1" id="border-1-hawaiian">
+              <div class="col-6 m-auto pl-2 pt-2 pb-2 pr-0">
+                <img class="img-fluid" src="https://user-images.githubusercontent.com/32285482/42459632-af46770a-8361-11e8-89df-947b3b2fc9ca.jpg">
+              </div>
+              <div class="col-6 m-auto">
+                <p class="mb-0 name-product-principal text-center">Hawaiian </p>
+                <p  class="mb-0 name-product-principal text-center">Chicken BBQ </p>
+                <p class="f14 text-center mb-0">Deliciosa base de salsa BBQ, pollo, tocino, cebolla blanca, piña y queso mozzarella</p>
+               
+              </div>
+
+            </div>
+          </label>
+          <input type="radio" name="tipo" value="All The Meats" id="rballthemeats" class="text-right" />
+          <label class="pizza-box-radio" for="rballthemeats">
+            <div class="row border-b border-preview p-1" id="border-1-allthemeats">
+              <div class="col-6 m-auto pl-2 pt-2 pb-2 pr-0">
+                <img class="img-fluid" src="https://user-images.githubusercontent.com/32285482/42459639-b22056c6-8361-11e8-8c2f-032bc0ac92ac.jpg">
+              </div>
+              <div class="col-6 m-auto">
+                <p class="mb-0 name-product-principal text-center">All the meats </p>
+                <p class="f14 text-center mb-0">Pepperoni, salchicha de cerdo, jamón, tocino, carne de res y queso mozzarella</p>
+               
+              </div>
+
+            </div>
+          </label>
+          <input type="radio" name="tipo" value="The Works" id="rbtheworks" class="text-right" />
+          <label class="pizza-box-radio" for="rbtheworks">
+            <div class="row border-b border-preview p-1" id="border-1-theworks">
+              <div class="col-6 m-auto pl-2 pt-2 pb-2 pr-0">
+                <img class="img-fluid" src="https://user-images.githubusercontent.com/32285482/42459654-b9595fa0-8361-11e8-94d8-7f25054fa1af.jpg">
+              </div>
+              <div class="col-6 m-auto">
+                <p class="mb-0 name-product-principal text-center">The Works</p>
+                <p class="f14 text-center mb-0">Pepperoni, salchicha italiana, jamón, pimientos, cebolla, champiñones, aceitunas y queso mozzarella</p>
+               
+              </div>
+
+            </div>
+          </label>
+
+
+        </form>
+
+
+
+
+      </div>
+
+    </div>
+    <div class="mt-3">
+      <button class="p-2 text-center btn-confirm-pizza confirm-big-js btn-confirm-promo-principal">Confirmar</button>
+    </div>
+  </section>
+
+
+  <!-- Patriotas -->
+  <!-- <section class="promo-principal-section">
     <div class="container">
       <div class="mt-2 mb-2">
         <a class="back-principal">
@@ -168,9 +353,9 @@
             <div>
               <form id=radiotipo2 class=" text-center">
                 <input type="radio" name="tipo" value="1" checked id="rb1p" />
-                <label for="rb1p">1 pizza</label>
+                <label for="rb1p" class="pizza-count">1 pizza</label>
                 <input type="radio" name="tipo" value="2" id="rb2p" />
-                <label for="rb2p">2 pizzas</label>
+                <label for="rb2p" class="pizza-count">2 pizzas</label>
               </form>
             </div>
           </div>
@@ -178,9 +363,9 @@
           <div>
             <form id=radiotipo3 class=" text-center">
               <input type="radio" name="tipo" value="Grande" checked id="rb1s" />
-              <label for="rb1s">Grande (8 slices) </label>
+              <label for="rb1s" class="pizza-count">Grande (8 slices) </label>
               <input type="radio" name="tipo" value="Familiar" id="rb2s" />
-              <label for="rb2s">Familiar (10 slices)</label>
+              <label for="rb2s" class="pizza-count">Familiar (10 slices)</label>
             </form>
           </div>
         </div>
@@ -323,7 +508,7 @@
 
         <button class="p-2 text-center btn-confirm-pizza confirm-big-js btn-confirm-promo-principal">Confirmar</button>
       </div>
-  </section>
+  </section> -->
 
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="app.js"></script>

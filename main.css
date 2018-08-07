@@ -16,7 +16,7 @@
 .title-section {
   background-color: var(--darkred);
   color: white;
-  font-size: 30px;
+  font-size: 29px;
   font-family: "papafont";
   text-transform: uppercase
 }
@@ -118,8 +118,20 @@
   font-weight: 500;
   color: var(--darkgrey);
   font-family: "papafont";
-  text-transform: uppercase
+  text-transform: uppercase;
+  
 }
+
+
+.name-product-principal {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--darkgrey);
+  font-family: "papafont";
+  text-transform: uppercase;
+  line-height: 26px;
+}
+
 
 .subtitle-product {
   color: var(--darkgrey);
@@ -176,7 +188,7 @@ input[type="radio"] {
   z-index: -1;
 }
 
-label {
+.pizza-count {
   position: relative;
   display: inline-block;
   margin-bottom: 10px;
@@ -187,7 +199,7 @@ label {
   font-size: 14px;
 }
 
-label::before {
+.pizza-count::before {
   content: " ";
   position: absolute;
   top: 6px;
@@ -201,7 +213,30 @@ label::before {
 }
 
 input[type="radio"]:checked+label::before {
-  background-color: var(--green)
+  background-color: var(--green);
+  border: 2px solid --darkred;
+}
+
+
+.pizza-box-radio{
+  position: relative;
+  display: inline-block;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.pizza-box-radio::before {
+  content: " ";
+  position: absolute;
+  top: 8px;
+  right: -6px;
+  display: block;
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--green);
+  border-radius: 18px;
+  z-index: -1;
 }
 
 .logo-papa {
@@ -210,6 +245,11 @@ input[type="radio"]:checked+label::before {
 
 .border-g {
   border: 2px solid var(--green);
+  border-radius: 5px
+}
+
+.border-b {
+  border: 2px solid var(--lightgrey);
   border-radius: 5px
 }
 
@@ -233,4 +273,9 @@ input[type="radio"]:checked+label::before {
 .detail-promo{
   font-size: 14px;
   color: var(--darkgrey)
+}
+
+.border-r{
+  border: 2px solid var(--darkred);
+  border-radius: 5px
 }

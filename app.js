@@ -19,7 +19,7 @@ let prueba = 0;
 let delivery = 3.90;
 let countPizzaTotal = 1;
 let sizePizza = "Grande";
-
+let favoritePizza;
 let arrayPromociones = [];
 let arrayBigPizza = [];
 let arrayFamilyPizza = [];
@@ -49,15 +49,17 @@ btnSegunda.on('click', function () {
   arrayFinaly = [];
   localStorage.setItem('arrayBigPizza', arrayBigPizza);
   localStorage.setItem('arrayFinaly', arrayFinaly);
+
 });
 
 btnPromoPrincipal.on('click', function () {
   promoPrincipal.show();
   principal.hide();
   localStorage.setItem('promocion', 'principal');
-  arrayPromoPrincipal = [];
-  localStorage.setItem('arrayPromoPrincipal', arrayPromoPrincipal);
+  localStorage.setItem('arrayPromoPrincipal', []);
   resetPromoPrincipal();
+  // Inicializacion de promo Favoritas
+  initFavoritePizzas();
 })
 
 // regresar a la ventana principal
@@ -251,7 +253,7 @@ confirmPrincipal.on('click', function () {
   let convertPrice = parseFloat(precioPromoSelect);
   // showTotal.text(final.toFixed(1));
   if (arrayPromoSelect.length == 1) {
-    let pizza1 = arrayPromoPrincipal[0];
+    let pizza1 = arrayPromoSelect[0];
     let promo = localStorage.getItem('promocion');
     arrayPromociones.push({
       promocion: promo,
@@ -272,8 +274,8 @@ confirmPrincipal.on('click', function () {
     });
   }
   if (arrayPromoSelect.length == 2) {
-    let pizza1 = arrayPromoPrincipal[0];
-    let pizza2 = arrayPromoPrincipal[1];
+    let pizza1 = arrayPromoSelect[0];
+    let pizza2 = arrayPromoSelect[1];
     let promo = localStorage.getItem('promocion');
     arrayPromociones.push({
       promocion: promo,
@@ -415,6 +417,71 @@ $('#radiotipo3 input').on('change', function () {
   let totalPricePromoPrincipal = validationPricePromoPrincipal(sizePizza, countPizzaTotal);
   localStorage.setItem('totalPromoPrincipal', JSON.stringify(totalPricePromoPrincipal));
 });
+
+
+// cantidad de Pizzas Favorita
+
+
+$('#radiotipo5 input').on('change', function () {
+  let count = $('input[name=tipo]:checked', '#radiotipo5').val();
+  showSectionPizzasFavorites(count);
+  if (count == 1) {
+    countPizzaTotal = 1;
+    oneFavorite(sizePizza);
+  }
+  if (count == 2) {
+    countPizzaTotal = 2;
+    if (favoritePizza) {
+      twoFavoritesPizzas(sizePizza, favoritePizza);
+    }
+      desactiveButton(confirmPrincipal);
+   
+    
+  }
+  let totalPricePromoPrincipal = validationPricePromoPrincipal(sizePizza, countPizzaTotal);
+  localStorage.setItem('totalPromoPrincipal', JSON.stringify(totalPricePromoPrincipal));
+});
+
+$('#radiotipo6 input').on('change', function () {
+  sizePizza = $('input[name=tipo]:checked', '#radiotipo6').val();
+  if (sizePizza == "Grande") {
+    sizePizza = "Grande"
+  }
+  if (sizePizza == "Familiar") {
+    sizePizza = "Familiar"
+  }
+
+  if (countPizzaTotal == 1) {
+    oneFavorite(sizePizza);
+    let totalPricePromoPrincipal = validationPricePromoPrincipal(sizePizza, countPizzaTotal);
+    localStorage.setItem('totalPromoPrincipal', JSON.stringify(totalPricePromoPrincipal));
+  }
+  if (countPizzaTotal == 2) {
+    twoFavoritesPizzas(sizePizza, favoritePizza);
+    let totalPricePromoPrincipal = validationPricePromoPrincipal(sizePizza, countPizzaTotal);
+    localStorage.setItem('totalPromoPrincipal', JSON.stringify(totalPricePromoPrincipal));
+    
+  }
+
+});
+
+
+// Radio Button select Pizza Promo Principal - Favoritas
+$('#radiotipo4 input').on('change', function () {
+
+  let namePizza = $('input[name=tipo]:checked', '#radiotipo4').val();
+  favoritePizza = namePizza;
+  twoFavoritesPizzas(sizePizza, favoritePizza)
+  let idElementBorder = $(this)[0].nextElementSibling.firstElementChild.id;
+  activeBorderRadioButtonPizza(idElementBorder);
+  if(sizePizza){
+    activeButton(confirmPrincipal);
+  }else{
+    desactiveButton(confirmPrincipal);
+  }
+});
+
+
 
 // Borrando items del detalle de pedido
 $(document).on('click', '.btn-delete', function () {
@@ -692,6 +759,59 @@ function totalOrderDelivery() {
   let numberTotal = localStorage.getItem('totalFinal');
   let totalDelivery = parseFloat(numberTotal) + 3.90;
   return totalDelivery.toFixed(1);
+}
+
+function activeBorderRadioButtonPizza(id) {
+  resetBorderGrey();
+  $(`#${id}`).removeClass('border-b');
+  $(`#${id}`).addClass('border-r');
+}
+
+function showSectionPizzasFavorites(count) {
+  if (count == 1) {
+    $('#box-pizza-favorite').hide();
+    $('#title-favorite-selection').text('tu pizza')
+  } else {
+    $('#box-pizza-favorite').show();
+    $('#title-favorite-selection').text('tu primera pizza')
+  }
+}
+
+function initFavoritePizzas() {
+  localStorage.setItem('totalPromoPrincipal',39.90);
+  sizePizza = "Grande";
+  $('input[type=radio]').prop('checked', function () {
+    return this.getAttribute('checked') == 'checked';
+  });
+  $('#box-pizza-favorite').hide();
+  oneFavorite(sizePizza);
+  activeButton(confirmPrincipal);
+}
+
+function resetBorderGrey() {
+  $('.border-preview').removeClass('border-r');
+  $('.border-preview').addClass('border-b');
+}
+
+function twoFavoritesPizzas(sizePizza, favoritePizza) {
+  let arrayFavorita = [{
+      'detalle': 'La Favorita de John',
+      'tamaño': sizePizza
+    },
+    {
+      'detalle': favoritePizza,
+      'tamaño': sizePizza
+    }
+  ];
+  localStorage.setItem('arrayPromoPrincipal', JSON.stringify(arrayFavorita));
+}
+
+function oneFavorite(sizePizza) {
+  let arrayFavorita = [{
+    'detalle': 'La Favorita de John',
+    'tamaño': sizePizza
+  }];
+  localStorage.setItem('arrayPromoPrincipal', JSON.stringify(arrayFavorita));
 }
 
 inactivePromo();
