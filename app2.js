@@ -618,7 +618,6 @@ function resetPromo2da() {
 
 // Funciones de Incrementar/Decrementar Precio
 let incrementTotal = (price, idNumberBox, name, type, detail) => {
-  console.log(parseFloat(price));
   let promo = localStorage.getItem('promocion');
   if (promo == "segunda1sol") {
     let totalPedido = localStorage.getItem('totalFinal');
@@ -629,12 +628,12 @@ let incrementTotal = (price, idNumberBox, name, type, detail) => {
     // almacenando data de costo total
     arrayBigPizza.push({
       'detalle': name,
-      'precio': parseFloat(price),
+      'precio': price,
       'tamaño': type
     });
     arrayFinaly.push({
       'detalle': name,
-      'precio': parseFloat(price),
+      'precio': price,
       'tamaño': type
     });
     localStorage.setItem('arrayBigPizza', JSON.stringify(arrayBigPizza));

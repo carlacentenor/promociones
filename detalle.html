@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="main.css">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <header class="detail-css">
+    <div class="text-center">
+      <img class="logo-papa" src="https://cdn.glitch.com/91e28cb2-d37c-4e4b-92be-c94d260d314c%2Flogo-small-no-text-papa-johns.png?1531868931842"
+        alt="" />
+    </div>
+    <div class="title-section p-2">
+      <div class="row">
+        <div class="col-2">
+          <img class="img-icon" src="https://user-images.githubusercontent.com/32285482/42764450-426034d0-88db-11e8-83c1-30a752f4d596.png"
+            alt="" />
+        </div>
+        <div class="col-10"> Detalle de Pedido</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="containerPrincipal">
+    <section class="detail-css">
+
+      <div class="detail-view">
+        <div>
+          <div class="row">
+            <div class="col-9">
+              <p class="mb-0 title-promo">Promoción La 2da a 1 sol </p>
+            </div>
+            <div class="col-3 text-right">
+              <button class="btn-delete" id="index" data-id="index">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+          <p class="mb-0">1 Pizza Grande Americana </p>
+          <p class="mb-0">1 Pizza Grande Pepperoni</p>
+        </div>
+      </div>
+      <div>
+        <p class="delivery">*Costo Delivery : S/ 3.90</p>
+      </div>
+      <div class="info-temperature"></div>
+      <div class="num-total-delivery">
+        <span>Total : S/</span>
+        <span id="total">45.80</span>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <form id="preferencesForm ">
+      <input id="resumen-pedido-promo2da" type="hidden" name="detallepedido">
+      <input id="resumentotal" type="hidden" name="total">
+      <input type="hidden" name="userId" value=userId>
+      <input type="hidden" name="blockName" value=blockName>
+      <div class="container">
+          <div class="row">
+              <div class="col-6 p-0">
+                <button class="btn-darkred p-2">Agregar m&aacute;s</button>
+              </div>
+              <div class="col-6 p-0">
+                <button type="submit" class="btn-confirm text-center p-2" id="config" disabled>Confirmar
+                </button>
+              </div>
+            </div>
+      </div>
+     
+
+    </form>
+  </footer>
+
+
+</body>
+
+</html>

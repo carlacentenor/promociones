@@ -116,10 +116,17 @@
           <p class="name-product pl-3 pt-2 mb-0">Elige Tamaño</p>
           <div>
             <form id=radiotipo class=" text-center">
-              <input type="radio" name="tipo" value="Grande" checked id="rb1" />
-              <label for="rb1"  class="pizza-count">Grande (8 slices) </label>
-              <input type="radio"  name="tipo" value="Familiar" id="rb2" />
-              <label for="rb2"  class="pizza-count">Familiar (10 slices)</label>
+              <div class="row">
+                <div class="col-6 pr-0">
+                  <input type="radio" name="tipo" value="Grande" checked id="rb1" />
+                  <label for="rb1" class="pizza-count">Grande (8 slices) </label>
+                </div>
+                <div class="col-6 pl-0">
+                  <input type="radio" name="tipo" value="Familiar" id="rb2" />
+                  <label for="rb2" class="pizza-count">Familiar (10 slices)</label>
+                </div>
+              </div>
+
             </form>
           </div>
         </div>
@@ -127,7 +134,427 @@
       </div>
     </div>
     <div class=" container">
-      <div class="row container-bigpizza"></div>
+      <div class="row container-bigpizza">
+
+        <div class="col-6 pt-2 mb-3">
+          <div class="mb-2">
+            <p class="mb-0 name-product text-center">Americana </p>
+            <div class="">
+              <img class="img-fluid" src="https://user-images.githubusercontent.com/32285482/42459625-ab31e0dc-8361-11e8-851d-a98e9b1ae287.png">
+            </div>
+            <p class="text-center mb-0 name-product">S/ 40.90</p>
+            <p class="f14 text-center mb-2">Delicioso jamón y queso mozzarella</p>
+            <div class="row">
+              <div class="col-4 offset-1 text-right">
+                <button class=" decrement btn-subt" data-detail="Pizza Americana Grande a S/40.90" data-name="Americana" data-precio=40.90
+                  data-type=grande id="americanagrandedecrement">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+              <div class="col-2 text-center number-span" id=americanagrande>0</div>
+              <div class="col-4">
+                <button class="increment btn-subt" data-detail="Pizza Americana Grande a S/40.90" data-name="Americana" data-precio=40.90
+                  data-type=grande id="americanagrandeaument">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-6 pt-2 mb-3">
+          <div class="mb-2">
+            <p class="mb-0 name-product text-center">Pepperoni </p>
+            <div class="">
+              <img class="img-fluid" src="https://user-images.githubusercontent.com/32285482/42459645-b47808ce-8361-11e8-84da-09aea0c4de30.jpg">
+            </div>
+            <p class="text-center mb-0 name-product">S/ 40.90</p>
+            <p class="f14 text-center mb-2">Delicioso pepperoni y queso mozzarella</p>
+            <div class="row">
+              <div class="col-4 offset-1 text-right">
+                <button class=" decrement btn-subt" data-detail="Pizza Pepperoni Grande a S/40.90" data-name="Pepperoni" data-precio=40.90
+                  data-type=grande id="pepperonigrandedecrement">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+              <div class="col-2 text-center number-span" id=pepperonigrande>0</div>
+              <div class="col-4">
+                <button class="increment btn-subt" data-detail="Pizza Pepperoni Grande a S/40.90" data-name="Pepperoni" data-precio=40.90
+                  data-type=grande id="pepperonigrandeaument">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-6 pt-2 mb-3">
+          <div class="mb-2">
+            <p class="mb-0 name-product text-center">Vegetariana </p>
+            <div class="">
+              <img class="img-fluid" src="https://user-images.githubusercontent.com/32285482/42459652-b77b2d94-8361-11e8-9a83-1a051a610508.jpg">
+            </div>
+            <p class="text-center mb-0 name-product">S/ 40.90</p>
+            <div class="box-detail">
+              <p class="f14 text-center mb-2">Tomates, champiñones, cebolla, pimientos, aceitunas negras y queso mozzarella</p>
+            </div>
+
+            <div class="row">
+              <div class="col-4 offset-1 text-right">
+                <button class=" decrement btn-subt" data-detail="Pizza Vegetariana Grande a S/40.90" data-name="Vegetariana" data-precio=40.90
+                  data-type=grande id="vegetarianagrandedecrement">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+              <div class="col-2 text-center number-span" id=vegetarianagrande>0</div>
+              <div class="col-4">
+                <button class="increment btn-subt" data-detail="Pizza Vegetariana Grande a S/40.90" data-name="Vegetariana" data-precio=40.90
+                  data-type=grande id="vegetarianagrandeaument">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-6 pt-2 mb-3">
+          <div class="mb-2">
+            <p class="mb-0 name-product text-center">Hawaiana </p>
+            <div class="">
+              <img class="img-fluid" src="https://user-images.githubusercontent.com/32285482/42459630-ad9755f0-8361-11e8-9c77-eddf65976de6.jpg">
+            </div>
+            <p class="text-center mb-0 name-product">S/ 45.90</p>
+            <div class="box-detail">
+              <p class="f14 text-center mb-2">Delicioso jamón, refrescante piña y riquísimo queso mozzarella extra</p>
+            </div>
+
+            <div class="row">
+              <div class="col-4 offset-1 text-right">
+                <button class=" decrement btn-subt" data-detail="Pizza Hawaiana Grande a S/45.90" data-name="Hawaiana" data-precio=45.90
+                  data-type=grande id="Hawaianagrandedecrement">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+              <div class="col-2 text-center number-span" id=Hawaianagrande>0</div>
+              <div class="col-4">
+                <button class="increment btn-subt" data-detail="Pizza Hawaiana Grande a S/45.90" data-name="Hawaiana" data-precio=45.90 data-type=grande
+                  id="Hawaianagrandeaument">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-6 pt-2 mb-3">
+          <div class="mb-2">
+            <p class="mb-0 name-product text-center">The Works </p>
+            <div class="">
+              <img class="img-fluid" src="https://user-images.githubusercontent.com/32285482/42459654-b9595fa0-8361-11e8-94d8-7f25054fa1af.jpg">
+            </div>
+            <p class="text-center mb-0 name-product">S/ 55.90</p>
+            <div class="box-detail2">
+              <p class="f14 text-center mb-2">Pepperoni, salchicha italiana, jamón, pimientos verdes, cebolla blanca, champiñones, aceitunas negras y queso
+                mozzarella
+              </p>
+            </div>
+
+            <div class="row">
+              <div class="col-4 offset-1 text-right">
+                <button class=" decrement btn-subt" data-detail="Pizza The Works Grande a S/55.90" data-name="The Works" data-precio=55.90
+                  data-type=grande id="TheWorksgrandedecrement">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+              <div class="col-2 text-center number-span" id="TheWorksgrande">0</div>
+              <div class="col-4">
+                <button class="increment btn-subt" data-detail="Pizza The Works Grande a S/55.90" data-name="The Works" data-precio=55.90
+                  data-type=grande id="TheWorksgrandeaument">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-6 pt-2 mb-3">
+          <div class="mb-2">
+            <p class="mb-0 name-product text-center">All the Meats </p>
+            <div class="">
+              <img class="img-fluid" src="https://user-images.githubusercontent.com/32285482/42459639-b22056c6-8361-11e8-8c2f-032bc0ac92ac.jpg">
+            </div>
+            <p class="text-center mb-0 name-product">S/ 55.90</p>
+            <div class="box-detail2">
+              <p class="f14 text-center mb-2">Pepperoni, salchicha de cerdo, jamón, tocino, carne de res y queso mozzarella</p>
+            </div>
+
+            <div class="row">
+              <div class="col-4 offset-1 text-right">
+                <button class=" decrement btn-subt" data-detail="Pizza All the Meats Grande a S/55.90" data-name="All the Meats" data-precio=55.90
+                  data-type=grande id="allthemeatsgrandedecrement">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+              <div class="col-2 text-center number-span" id="allthemeatsgrande">0</div>
+              <div class="col-4">
+                <button class="increment btn-subt" data-detail="Pizza All the Meats Grande a S/55.90" data-name="All the Meats" data-precio=55.90
+                  data-type=grande id="allthemeatsgrandeaument">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-6 pt-2 mb-3">
+          <div class="mb-2">
+            <p class="mb-0 name-product text-center line-h">Hawaiian Chicken BBQ </p>
+            <div class="mt-1">
+              <img class="img-fluid" src="https://user-images.githubusercontent.com/32285482/42459632-af46770a-8361-11e8-89df-947b3b2fc9ca.jpg">
+            </div>
+            <p class="text-center mb-0 name-product">S/ 55.90</p>
+            <div class="box-detail">
+              <p class="f14 text-center mb-2">Deliciosa base de salsa BBQ, pollo, tocino, cebolla blanca, piña y queso mozzarella</p>
+            </div>
+
+            <div class="row">
+              <div class="col-4 offset-1 text-right">
+                <button class=" decrement btn-subt" data-detail="Pizza Hawaiian Chicken BBQ Grande a S/55.90" data-name="Hawaiian Chicken BBQ"
+                  data-precio=55.90 data-type=grande id="hawaiianchickenbbqgrandedecrement">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+              <div class="col-2 text-center number-span" id="hawaiianchickenbbqgrande">0</div>
+              <div class="col-4">
+                <button class="increment btn-subt" data-detail="Pizza Hawaiian Chicken BBQ Grande a S/55.90" data-name="Hawaiian Chicken BBQ"
+                  data-precio=55.90 data-type=grande id="hawaiianchickenbbqgrandeaument">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+
+
+      </div>
+      <div class="row container-familypizza">
+
+        <div class="col-6 pt-2 mb-3">
+          <div class="mb-2">
+            <p class="mb-0 name-product text-center">Americana </p>
+            <div class="">
+              <img class="img-fluid" src="https://user-images.githubusercontent.com/32285482/42459625-ab31e0dc-8361-11e8-851d-a98e9b1ae287.png">
+            </div>
+            <p class="text-center mb-0 name-product">S/ 50.90</p>
+            <p class="f14 text-center mb-2">Delicioso jamón y queso mozzarella</p>
+            <div class="row">
+              <div class="col-4 offset-1 text-right">
+                <button class=" decrement btn-subt" data-detail="Pizza Americana familiar a S/50.90" data-name="Americana" data-precio=50.90
+                  data-type=familiar id="americanafamiliardecrement">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+              <div class="col-2 text-center number-span" id=americanafamiliar>0</div>
+              <div class="col-4">
+                <button class="increment btn-subt" data-detail="Pizza Americana familiar a S/50.90" data-name="Americana" data-precio=50.90
+                  data-type=familiar id="americanafamiliaraument">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-6 pt-2 mb-3">
+          <div class="mb-2">
+            <p class="mb-0 name-product text-center">Pepperoni </p>
+            <div class="">
+              <img class="img-fluid" src="https://user-images.githubusercontent.com/32285482/42459645-b47808ce-8361-11e8-84da-09aea0c4de30.jpg">
+            </div>
+            <p class="text-center mb-0 name-product">S/ 50.90</p>
+            <p class="f14 text-center mb-2">Delicioso pepperoni y queso mozzarella</p>
+            <div class="row">
+              <div class="col-4 offset-1 text-right">
+                <button class=" decrement btn-subt" data-detail="Pizza Pepperoni familiar a S/50.90" data-name="Pepperoni" data-precio=50.90
+                  data-type=familiar id="pepperonifamiliardecrement">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+              <div class="col-2 text-center number-span" id=pepperonifamiliar>0</div>
+              <div class="col-4">
+                <button class="increment btn-subt" data-detail="Pizza Pepperoni familiar a S/50.90" data-name="Pepperoni" data-precio=50.90
+                  data-type=familiar id="pepperonifamiliaraument">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-6 pt-2 mb-3">
+          <div class="mb-2">
+            <p class="mb-0 name-product text-center">Vegetariana </p>
+            <div class="">
+              <img class="img-fluid" src="https://user-images.githubusercontent.com/32285482/42459652-b77b2d94-8361-11e8-9a83-1a051a610508.jpg">
+            </div>
+            <p class="text-center mb-0 name-product">S/ 50.90</p>
+            <div class="box-detail">
+              <p class="f14 text-center mb-2">Tomates, champiñones, cebolla, pimientos, aceitunas negras y queso mozzarella</p>
+            </div>
+
+            <div class="row">
+              <div class="col-4 offset-1 text-right">
+                <button class=" decrement btn-subt" data-detail="Pizza Vegetariana familiar a S/50.90" data-name="Vegetariana" data-precio=50.90
+                  data-type=familiar id="vegetarianafamiliardecrement">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+              <div class="col-2 text-center number-span" id=vegetarianafamiliar>0</div>
+              <div class="col-4">
+                <button class="increment btn-subt" data-detail="Pizza Vegetariana familiar a S/50.90" data-name="Vegetariana" data-precio=50.90
+                  data-type=familiar id="vegetarianafamiliaraument">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-6 pt-2 mb-3">
+          <div class="mb-2">
+            <p class="mb-0 name-product text-center">Hawaiana </p>
+            <div class="">
+              <img class="img-fluid" src="https://user-images.githubusercontent.com/32285482/42459630-ad9755f0-8361-11e8-9c77-eddf65976de6.jpg">
+            </div>
+            <p class="text-center mb-0 name-product">S/ 55.90</p>
+            <div class="box-detail">
+              <p class="f14 text-center mb-2">Delicioso jamón, refrescante piña y riquísimo queso mozzarella extra</p>
+            </div>
+
+            <div class="row">
+              <div class="col-4 offset-1 text-right">
+                <button class=" decrement btn-subt" data-detail="Pizza Hawaiana familiar a S/55.90" data-name="Hawaiana" data-precio=55.90
+                  data-type=familiar id="Hawaianafamiliardecrement">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+              <div class="col-2 text-center number-span" id=Hawaianafamiliar>0</div>
+              <div class="col-4">
+                <button class="increment btn-subt" data-detail="Pizza Hawaiana familiar a S/55.90" data-name="Hawaiana" data-precio=55.90
+                  data-type=familiar id="Hawaianafamiliaraument">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-6 pt-2 mb-3">
+          <div class="mb-2">
+            <p class="mb-0 name-product text-center">The Works </p>
+            <div class="">
+              <img class="img-fluid" src="https://user-images.githubusercontent.com/32285482/42459654-b9595fa0-8361-11e8-94d8-7f25054fa1af.jpg">
+            </div>
+            <p class="text-center mb-0 name-product">S/ 65.90</p>
+            <div class="box-detail2">
+              <p class="f14 text-center mb-2">Pepperoni, salchicha italiana, jamón, pimientos verdes, cebolla blanca, champiñones, aceitunas negras y queso
+                mozzarella
+              </p>
+            </div>
+
+            <div class="row">
+              <div class="col-4 offset-1 text-right">
+                <button class=" decrement btn-subt" data-detail="Pizza The Works familiar a S/65.90" data-name="The Works" data-precio=65.90
+                  data-type=familiar id="TheWorksfamiliardecrement">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+              <div class="col-2 text-center number-span" id="TheWorksfamiliar">0</div>
+              <div class="col-4">
+                <button class="increment btn-subt" data-detail="Pizza The Works familiar a S/65.90" data-name="The Works" data-precio=65.90
+                  data-type=familiar id="TheWorksfamiliaraument">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-6 pt-2 mb-3">
+          <div class="mb-2">
+            <p class="mb-0 name-product text-center">All the Meats </p>
+            <div class="">
+              <img class="img-fluid" src="https://user-images.githubusercontent.com/32285482/42459639-b22056c6-8361-11e8-8c2f-032bc0ac92ac.jpg">
+            </div>
+            <p class="text-center mb-0 name-product">S/ 65.90</p>
+            <div class="box-detail2">
+              <p class="f14 text-center mb-2">Pepperoni, salchicha de cerdo, jamón, tocino, carne de res y queso mozzarella</p>
+            </div>
+
+            <div class="row">
+              <div class="col-4 offset-1 text-right">
+                <button class=" decrement btn-subt" data-detail="Pizza All the Meats familiar a S/65.90" data-name="All the Meats" data-precio=65.90
+                  data-type=familiar id="allthemeatsfamiliardecrement">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+              <div class="col-2 text-center number-span" id="allthemeatsfamiliar">0</div>
+              <div class="col-4">
+                <button class="increment btn-subt" data-detail="Pizza All the Meats familiar a S/65.90" data-name="All the Meats" data-precio=65.90
+                  data-type=familiar id="allthemeatsfamiliaraument">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-6 pt-2 mb-3">
+          <div class="mb-2">
+            <p class="mb-0 name-product text-center line-h">Hawaiian Chicken BBQ </p>
+            <div class="mt-1">
+              <img class="img-fluid" src="https://user-images.githubusercontent.com/32285482/42459632-af46770a-8361-11e8-89df-947b3b2fc9ca.jpg">
+            </div>
+            <p class="text-center mb-0 name-product">S/ 65.90</p>
+            <div class="box-detail">
+              <p class="f14 text-center mb-2">Deliciosa base de salsa BBQ, pollo, tocino, cebolla blanca, piña y queso mozzarella</p>
+            </div>
+
+            <div class="row">
+              <div class="col-4 offset-1 text-right">
+                <button class=" decrement btn-subt" data-detail="Pizza Hawaiian Chicken BBQ familiar a S/65.90" data-name="Hawaiian Chicken BBQ"
+                  data-precio=65.90 data-type=familiar id="hawaiianchickenbbqfamiliardecrement">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+              <div class="col-2 text-center number-span" id="hawaiianchickenbbqfamiliar">0</div>
+              <div class="col-4">
+                <button class="increment btn-subt" data-detail="Pizza Hawaiian Chicken BBQ familiar a S/65.90" data-name="Hawaiian Chicken BBQ"
+                  data-precio=65.90 data-type=familiar id="hawaiianchickenbbqfamiliaraument">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+
+      </div>
     </div>
     <div class="text-center">
       <span class="text-alert"></span>
@@ -146,6 +573,7 @@
         <a class="back-principal">
           <span>
             <</span> Volver</a>
+
       </div>
       <div class="title-section p-2">
         <div class="row">
@@ -157,29 +585,52 @@
         </div>
       </div>
       <div class="text-center p-3 detail-promo">
-        <p class="mb-0">Llévate 1 pizza la Favorita de John en tamaño grande a S/ 39.90 o en tamaño familiar S/ 44.90</p>
-        <p class="mb-0">o llévate la Favorita de John + tu favorita en tamaño grande a S/ 59.90 y en tamaño familiar a S/ 69.90 </p>
+        <p class="mb-0">Llévate 1 pizza la Favorita de John en tamaño grande a
+          <span class="bold">S/ 39.90</span> o en tamaño familiar
+          <span class="bold">S/ 44.90</p>
+        <p class="mb-0">o llévate la Favorita de John + tu favorita en tamaño grande a
+          <span class="bold">S/ 59.90</span> y en tamaño familiar a
+          <span class="bold">S/ 69.90</span>
+        </p>
       </div>
       <div>
         <div class="border-g">
           <div class="">
             <p class="name-product pl-3 pt-2 mb-0">Elige la cantidad de pizzas :</p>
             <div>
-              <form id=radiotipo5 class=" text-center">
-                <input type="radio" name="tipo" value="1" checked="checked" id="rb1count" />
-                <label for="rb1count" class="pizza-count">1 pizza</label>
-                <input type="radio" name="tipo" value="2" id="rb2promocount" />
-                <label for="rb2promocount" class="pizza-count">2 pizzas</label>
+              <form id=radiotipo5 class="container">
+
+                <div class="row">
+                  <div class="col-6 pr-0">
+                    <input type="radio" name="tipo" value="1" checked="checked" id="rb1count" />
+                    <label for="rb1count" class="pizza-count">1 pizza</label>
+                  </div>
+                  <div class="col-6 pl-0">
+                    <input type="radio" name="tipo" value="2" id="rb2promocount" />
+                    <label for="rb2promocount" class="pizza-count">2 pizzas</label>
+                  </div>
+
+                </div>
+
+
               </form>
             </div>
           </div>
           <p class="name-product pl-3 pt-2 mb-0">Elige el Tamaño :</p>
           <div>
-            <form id=radiotipo6 class=" text-center">
-              <input type="radio" name="tipo" value="Grande" checked="checked" id="rb1size" />
-              <label for="rb1size" class="pizza-count">Grande (8 slices) </label>
-              <input type="radio" name="tipo" value="Familiar" id="rb2size" />
-              <label for="rb2size" class="pizza-count">Familiar (10 slices)</label>
+            <form id=radiotipo6 class=" container">
+              <div class="row">
+                <div class="col-6 pr-0">
+                  <input type="radio" name="tipo" value="Grande" checked="checked" id="rb1size" />
+                  <label for="rb1size" class="pizza-count">Grande (8 slices) </label>
+                </div>
+                <div class="col-6 pl-0 pr-0">
+                  <input type="radio" name="tipo" value="Familiar" id="rb2size" />
+                  <label for="rb2size" class="pizza-count">Familiar (10 slices)</label>
+                </div>
+              </div>
+
+
             </form>
           </div>
         </div>
@@ -206,12 +657,14 @@
 
       <div class="container" id="box-pizza-favorite">
         <div class="text-center">
-          <p class="name-product-principal mb-0 mt-3" >elige la segunda : tu favorita</p>
+          <p class="name-product-principal mb-0 mt-3">elige la segunda : tu favorita</p>
         </div>
 
         <form id=radiotipo4 class=" text-center">
+
           <input type="radio" name="tipo" value="Americana" id="rbamericana" class="text-right" />
           <label class="pizza-box-radio" for="rbamericana">
+
             <div class="row border-b border-preview p-1" id="border-1-americana">
               <div class="col-6 m-auto pl-2 pt-2 pb-2 pr-0">
                 <img class="img-fluid" src="https://user-images.githubusercontent.com/32285482/42459625-ab31e0dc-8361-11e8-851d-a98e9b1ae287.png">
@@ -222,7 +675,9 @@
               </div>
 
             </div>
+
           </label>
+
           <input type="radio" name="tipo" value="Pepperoni" id="rbpepperoni" class="text-right" />
           <label class="pizza-box-radio" for="rbpepperoni">
             <div class="row border-b border-preview p-1 " id="border-1-pepperoni">
@@ -230,6 +685,7 @@
                 <img class="img-fluid" src="https://user-images.githubusercontent.com/32285482/42459645-b47808ce-8361-11e8-84da-09aea0c4de30.jpg">
               </div>
               <div class="col-6 m-auto">
+
                 <p class="mb-0 name-product-principal text-center">Pepperoni</p>
                 <p class="f14 text-center mb-0">Delicioso Pepperoni y queso mozzarella</p>
               </div>
@@ -245,7 +701,7 @@
               <div class="col-6 m-auto">
                 <p class="mb-0 name-product-principal text-center">Vegetariana </p>
                 <p class="f14 text-center mb-0">Tomates, champiñones, cebolla, pimientos, aceitunas negras y queso mozzarella</p>
-               
+
               </div>
 
             </div>
@@ -259,7 +715,7 @@
               <div class="col-6 m-auto">
                 <p class="mb-0 name-product-principal text-center">Hawaiana </p>
                 <p class="f14 text-center mb-0">Delicioso jamón, refrescante piña y riquísimo queso mozzarella extra</p>
-               
+
               </div>
 
             </div>
@@ -272,9 +728,9 @@
               </div>
               <div class="col-6 m-auto">
                 <p class="mb-0 name-product-principal text-center">Hawaiian </p>
-                <p  class="mb-0 name-product-principal text-center">Chicken BBQ </p>
+                <p class="mb-0 name-product-principal text-center">Chicken BBQ </p>
                 <p class="f14 text-center mb-0">Deliciosa base de salsa BBQ, pollo, tocino, cebolla blanca, piña y queso mozzarella</p>
-               
+
               </div>
 
             </div>
@@ -288,7 +744,7 @@
               <div class="col-6 m-auto">
                 <p class="mb-0 name-product-principal text-center">All the meats </p>
                 <p class="f14 text-center mb-0">Pepperoni, salchicha de cerdo, jamón, tocino, carne de res y queso mozzarella</p>
-               
+
               </div>
 
             </div>
@@ -302,7 +758,7 @@
               <div class="col-6 m-auto">
                 <p class="mb-0 name-product-principal text-center">The Works</p>
                 <p class="f14 text-center mb-0">Pepperoni, salchicha italiana, jamón, pimientos, cebolla, champiñones, aceitunas y queso mozzarella</p>
-               
+
               </div>
 
             </div>
@@ -317,9 +773,13 @@
       </div>
 
     </div>
-    <div class="mt-3">
+
+    <div class="mt-3" id="btn-confirm-favorita">
       <button class="p-2 text-center btn-confirm-pizza confirm-big-js btn-confirm-promo-principal">Confirmar</button>
     </div>
+
+
+
   </section>
 
 
