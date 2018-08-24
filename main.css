@@ -84,7 +84,7 @@ footer {
   width: 100%;
 }
 
-#btn-confirm-favorita{
+#btn-confirm-favorita {
   height: 7vh;
 }
 
@@ -272,7 +272,7 @@ input[type="radio"]:checked+label::before {
 
 .title-promo {
   font-family: 'papafont';
-  font-size: 20px
+  font-size: 20px;
 }
 
 .btn-delete {
@@ -300,6 +300,39 @@ input[type="radio"]:checked+label::before {
   height: 7vh;
 }
 
-.bold{
+.bold {
   font-weight: bold
+}
+
+.box-detail {
+  height: 85px
+}
+
+.box-detail2 {
+  height: 95px
+}
+
+.line-h {
+  line-height: 22px
+}
+
+.detail-f {
+  font-size: 12px;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+@media (max-width: 340px) {
+  .box-detail2 {
+    height: 135px
+  }
+  .box-detail {
+    height: 100px
+  }
 }
